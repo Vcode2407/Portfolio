@@ -1,0 +1,20 @@
+---
+title: "Lessons from Working as a Software Engineer at micro1"
+description: "What remote backend product engineering taught me about planning, latency, observability, and ownership."
+date: "2026-06-01"
+tags: ["Backend", "Microservices", "Engineering"]
+---
+
+Working remotely as a software engineer while pursuing M.Tech has pushed me to be sharper about ownership.
+
+## Planning Is an Engineering Tool
+
+Reducing feature delivery time by about 30% was not only about writing code faster. It came from system design reviews, API contract mocking, and clearer implementation plans before code entered the mainline.
+
+## Latency Hides in Coupling
+
+One of the largest wins came from moving notification delivery away from the critical request path. The event-driven architecture reduced p99 latency by roughly 40% because the API no longer waited on work that did not need to be synchronous.
+
+## Observability Changes Behavior
+
+Better dashboards and deployment feedback make engineers more willing to ship small, reversible improvements. Observability is not a reporting layer after the fact; it changes how the team designs and releases software.

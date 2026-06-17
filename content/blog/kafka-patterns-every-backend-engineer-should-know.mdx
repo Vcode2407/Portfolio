@@ -1,0 +1,38 @@
+---
+title: "Kafka Patterns Every Backend Engineer Should Know"
+description: "Practical Kafka patterns for schedulers, routing systems, backpressure, retries, and failure isolation."
+date: "2026-05-10"
+tags: ["Kafka", "Queues", "Reliability"]
+---
+
+Kafka is most useful when it gives a backend system a clean boundary between accepting work, deciding what should happen next, and executing that work safely.
+
+## Pattern 1: Buffer Spikes Behind a Stable API
+
+High-throughput systems should not make the API wait for every downstream stage. The API can validate intent, persist state, and publish work into Kafka so execution happens behind a durable queue boundary.
+
+That pattern matters in schedulers and AI routing systems because spikes should create lag, not cascading request failures.
+
+## Pattern 2: Use Lag as Backpressure
+
+Kafka lag is an operating signal. If one worker pool falls behind, the system can scale that consumer group, slow producers, or shed non-critical work.
+
+The important part is making lag visible next to request rate, error rate, and worker saturation. Backpressure is only useful when engineers can see it early.
+
+## Pattern 3: Separate Retryable Failures from Poison Messages
+
+Retries should be explicit. A transient downstream timeout belongs in a backoff path. A malformed payload or exhausted retry sequence belongs in a dead letter queue.
+
+That separation keeps retry loops from hiding bad data and protects healthy work from being blocked by one failing message.
+
+## Pattern 4: Keep Canonical State Outside Kafka When Needed
+
+Kafka is an event stream, not automatically the source of truth for every workflow. A scheduler still benefits from PostgreSQL for due-time scans, lease state, retry metadata, and recovery decisions.
+
+The durable database answers "what is the state?" Kafka answers "what work should move next?"
+
+## Pattern 5: Design Consumer Idempotency Early
+
+At-least-once delivery means a worker may see a message more than once. That is not a failure if the consumer is designed for it.
+
+Idempotency keys, lease checks, and state transitions make retries safe enough to use in production instead of being treated as a scary edge case.

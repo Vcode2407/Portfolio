@@ -1,0 +1,22 @@
+---
+title: "Debugging a 32-bit C++ Bug in fmt"
+description: "How a fallback uint128 bitwise operation broke on i686 and what the root cause taught me."
+date: "2026-04-08"
+tags: ["Open Source", "C++", "Debugging"]
+---
+
+The fmt issue only appeared on 32-bit architecture. That immediately made it more interesting than an ordinary formatting mismatch.
+
+## The Symptom
+
+Hexadecimal floating formatting produced corrupted high-word behavior in the fallback `uint128` implementation.
+
+## The Root Cause
+
+`format_hexfloat` masked rounded bits with bitwise NOT, but the fallback `operator~` truncated to 32 bits. On i686, that meant the high word was corrupted while 64-bit validation could still look fine.
+
+## Validation
+
+The fix had to pass on both 32-bit and 64-bit targets. Architecture-specific bugs are dangerous because they reward testing only the machine you happen to own.
+
+This contribution reinforced a debugging habit I trust: reduce the problem until the architecture difference has nowhere to hide.

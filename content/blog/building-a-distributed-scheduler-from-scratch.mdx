@@ -1,0 +1,38 @@
+---
+title: "Building a Distributed Scheduler from Scratch"
+description: "The architecture decisions behind a Spring Boot scheduler that can survive concurrency, retries, and worker crashes."
+date: "2026-05-18"
+tags: ["Distributed Systems", "Spring Boot", "Kafka", "PostgreSQL"]
+---
+
+Most schedulers start as a timer and become a distributed systems problem the moment a second worker appears.
+
+The core design goal was simple: let clients submit immediate, delayed, or cron jobs, then execute them with at-least-once guarantees without duplicate worker ownership.
+
+## Data Model First
+
+The job table is the source of truth. It stores state, due time, retry count, queue, lease owner, and lease expiry. PostgreSQL gives the system a durable coordination point:
+
+```sql
+select id
+from jobs
+where status = 'queued'
+  and run_at <= now()
+order by run_at asc
+for update skip locked
+limit 100;
+```
+
+`FOR UPDATE SKIP LOCKED` matters because workers can race without blocking each other or leasing the same row.
+
+## Event Stream Second
+
+Kafka fan-out lets workers scale independently from API traffic. PostgreSQL owns scheduling state; Kafka carries leased work to workers.
+
+That split avoids a common trap: using Kafka as the only source of truth for delayed jobs. Durable scheduling metadata belongs in a queryable store where recovery paths are explicit.
+
+## Recovery Paths
+
+Every lease has an expiry. If a worker crashes, a reclamation loop moves expired leases back into the runnable pool. Retries use exponential backoff, and exhausted jobs move to a DLQ for inspection.
+
+The lesson: a scheduler is not reliable because the happy path is fast. It is reliable because every unhappy path is named, observable, and testable.

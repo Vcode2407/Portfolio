@@ -1,0 +1,22 @@
+---
+title: "My First Contribution to OpenTelemetry"
+description: "A short write-up on parser recovery, baggage headers, and adding regression coverage to a production observability project."
+date: "2026-04-22"
+tags: ["Open Source", "OpenTelemetry", "Java"]
+---
+
+My OpenTelemetry Java contribution centered on baggage header parsing. The bug was subtle: an invalid percent-encoded entry could interfere with preserving valid members.
+
+## The Investigation
+
+Parser bugs are often recovery bugs. It is not enough to reject malformed input; the parser also has to keep the valid input that came before or after the malformed segment.
+
+## The Fix
+
+The patch adjusted recovery behavior so invalid entries are rejected without discarding valid baggage members. That behavior is important in observability infrastructure because partial metadata is still useful when one header member is malformed.
+
+## Testing Strategy
+
+The regression tests focused on mixed valid and invalid entries. The goal was to encode the exact failure mode, not only assert the happy path.
+
+The best part of the contribution was learning how maintainers think: small patch, narrow behavior change, strong regression coverage.
