@@ -43,7 +43,7 @@ export default function AboutPage() {
           <SectionHeading
             eyebrow="About"
             title="A backend engineer with a systems bias."
-            description="Vinay is pursuing an M.Tech in Computer Science and Engineering at SRM University-AP, graduating in June 2028, while working remotely in AI benchmark engineering at Crossing Hurdles and backend product engineering at micro1."
+            description="Vinay is pursuing an M.Tech in Computer Science and Engineering at SRM University-AP, graduating in June 2028, while building and supporting backend applications, workflow automation, integrations, and deterministic tests through micro1 and Crossing Hurdles."
           />
         </div>
       </section>

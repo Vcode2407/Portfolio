@@ -20,11 +20,11 @@ export default function HomePage() {
   );
   const focusBadges = [
     "Java & Spring Boot",
-    "Go & Rust",
-    "AI Benchmark Engineering",
-    "Python & SQL",
+    "Python & FastAPI",
+    "REST APIs & Integrations",
+    "Workflow Automation",
+    "Testing & Troubleshooting",
     "Distributed Systems",
-    "Deterministic Testing"
   ];
 
   return (
@@ -43,9 +43,9 @@ export default function HomePage() {
               Building reliable backend applications, integrations, and developer-facing tools.
             </p>
             <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground md:text-lg">
-              M.Tech Computer Science student at SRM University-AP, graduating June 2028. I work
-              remotely in AI benchmark engineering at Crossing Hurdles and backend product engineering
-              at micro1, building with Go, Rust, Java, Spring Boot, PostgreSQL, React, and Python.
+              M.Tech Computer Science student at SRM University-AP, graduating June 2028. I build
+              and support Java/Spring Boot and Python/FastAPI applications, PostgreSQL-backed workflows,
+              REST and SaaS integrations, and deterministic tests through micro1 and Crossing Hurdles.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {focusBadges.map((badge) => (

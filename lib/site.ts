@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: "Vinay Kumar",
-  title: "Software Engineer focused on backend systems, AI benchmarks, deterministic testing, and open source.",
+  title: "Application and backend engineer focused on internal tools, integrations, testing, and open source.",
   description:
-    "Portfolio of Vinay Kumar, an M.Tech Computer Science student building Java and Python backend systems and deterministic Go and Rust AI coding benchmarks.",
+    "Portfolio of Vinay Kumar, an M.Tech Computer Science student building Java and Python applications, workflow automation, integrations, and tested backend systems.",
   location: "Hyderabad, India",
   email: "vkslog69@gmail.com",
   phone: "+91-83099-76969",
@@ -49,7 +49,7 @@ export type Experience = {
 export const experiences: Experience[] = [
   {
     company: "Crossing Hurdles",
-    role: "AI Coding Annotator (AI Benchmark Engineering)",
+    role: "AI Coding Annotator (Freelance)",
     period: "Sep 2026 - Present",
     location: "Remote, project-based freelance",
     summary:
