@@ -1,11 +1,10 @@
 export const siteConfig = {
   name: "Vinay Kumar",
-  title: "Software Engineer focused on Distributed Systems, Backend Engineering, Open Source, and AI Infrastructure.",
+  title: "Software Engineer focused on backend applications, integrations, testing, and open source.",
   description:
-    "Portfolio of Vinay Kumar, a software engineer building distributed systems, backend platforms, open source fixes, and AI infrastructure.",
+    "Portfolio of Vinay Kumar, an M.Tech Computer Science student and software engineer building Java and Python backend applications, integrations, and tested systems.",
   location: "Hyderabad, India",
-  email: "vickiease@gmail.com",
-  secondaryEmail: "vkslog69@gmail.com",
+  email: "vkslog69@gmail.com",
   phone: "+91-83099-76969",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   resumePath: "/resume/Vinay_Kumar_Resume.pdf",
@@ -27,12 +26,12 @@ export const navItems = [
 ];
 
 export const metrics = [
-  { value: "100K+", label: "Jobs/day Processed", detail: "Distributed scheduler load validation" },
-  { value: "1200+", label: "Requests/min", detail: "AKS + Kafka multi-agent routing" },
-  { value: "95%+", label: "Task Accuracy", detail: "10,000+ citizen-service queries" },
-  { value: "40%", label: "Latency Reduction", detail: "p99 API path decoupling" },
+  { value: "10,000", label: "Jobs Load-tested", detail: "Distributed scheduler benchmark" },
+  { value: "100", label: "Simulated Workers", detail: "Concurrent scheduler load test" },
+  { value: "73.32s", label: "Ranking Runtime", detail: "100,000-profile CPU-only pipeline" },
+  { value: "318", label: "LeetCode Problems", detail: "Algorithms and data structures" },
   { value: "2", label: "Merged Open Source Contributions", detail: "OpenTelemetry Java and fmt" },
-  { value: "AIR 7", label: "National Rank", detail: "Top 0.01% in SRMJEEM 2026" }
+  { value: "1622", label: "Codeforces Rating", detail: "Expert rating" }
 ];
 
 export type Experience = {
@@ -50,25 +49,25 @@ export type Experience = {
 export const experiences: Experience[] = [
   {
     company: "micro1",
-    role: "Software Engineer, Part-time Remote",
+    role: "Software Engineer, Contract",
     period: "May 2026 - Present",
-    location: "Remote, concurrent with M.Tech",
+    location: "Remote from India, concurrent with M.Tech",
     summary:
-      "Owns features end-to-end across a Java/Spring Boot, React, and PostgreSQL microservices platform within an 8-person engineering team.",
+      "Builds and maintains backend product features across a Java/Spring Boot, React, and PostgreSQL platform.",
     challenges: [
-      "Feature work required sharper system design alignment before implementation.",
-      "Synchronous notification delivery sat on the critical request path and inflated p99 latency.",
-      "Deployment and observability workflows needed tighter feedback loops for remote execution."
+      "Product requirements need to be translated into clear API behavior and data-model changes.",
+      "Backend issues require evidence from logs, database state, and reproducible test cases.",
+      "Remote delivery depends on concise implementation notes and reliable release checks."
     ],
     architecture: [
-      "Introduced API contract mocking and implementation planning before sprint build-out.",
-      "Moved notification delivery to an event-driven asynchronous architecture.",
-      "Improved CI/CD reliability and operational visibility across releases."
+      "Implements REST APIs and service logic with Java and Spring Boot.",
+      "Works across React client flows and PostgreSQL-backed data models.",
+      "Participates in design reviews, CI/CD workflows, debugging, and release validation."
     ],
     impact: [
-      "Reduced average feature delivery time by roughly 30%, from 10 days to 7 days.",
-      "Reduced p99 API latency by roughly 40% by decoupling notifications.",
-      "Strengthened release confidence through CI/CD, observability, and deployment process improvements."
+      "Delivers backend features from clarified requirements through implementation and verification.",
+      "Diagnoses defects using logs, database inspection, and regression checks.",
+      "Documents API behavior and implementation decisions for review and follow-up work."
     ],
     technologies: ["Java", "Spring Boot", "PostgreSQL", "React", "CI/CD", "Observability"]
   },
@@ -102,21 +101,21 @@ export const experiences: Experience[] = [
     period: "Jun 2025 - Aug 2025",
     location: "Remote",
     summary:
-      "Built backend and frontend workflows for configuration management and reduced operational support load.",
+      "Built and tested Python/FastAPI endpoints and supporting React workflows for configuration management.",
     challenges: [
-      "Eight scattered config endpoints made admin workflows brittle and support-heavy.",
-      "A stale data-fetching layer caused repeated frontend bug reproduction cycles.",
-      "Support teams lacked a single operational surface for common configuration tasks."
+      "Configuration workflows required consistent input validation and error handling.",
+      "Frontend and backend behavior needed to remain aligned as endpoints evolved.",
+      "Defects had to be reproduced and isolated before changes could be verified."
     ],
     architecture: [
-      "Consolidated fragmented endpoints into a unified admin platform.",
-      "Redesigned cache invalidation behavior around the data-fetching layer.",
-      "Aligned API responses and frontend state management around predictable update paths."
+      "Implemented FastAPI endpoints with explicit validation and error responses.",
+      "Connected API responses to React administration workflows.",
+      "Added tests and debugging notes around affected request paths."
     ],
     impact: [
-      "Eliminated roughly 35% of inbound support tickets caused by misconfiguration.",
-      "Reduced bug reproductions by about 80%, from 5 to 1 per sprint.",
-      "Created a cleaner operational path for support and engineering teams."
+      "Improved the consistency of configuration workflows through clearer validation.",
+      "Supported regression testing and root-cause analysis for backend and UI defects.",
+      "Created a more maintainable operational path for support and engineering teams."
     ],
     technologies: ["Python", "FastAPI", "React", "Caching", "Admin Systems"]
   },
@@ -225,7 +224,7 @@ export type Project = {
   repo: string;
   featuredMetric: string;
   tags: string[];
-  category: "Distributed Systems" | "AI Infrastructure" | "Developer Tools";
+  category: "Distributed Systems" | "AI Infrastructure" | "Developer Tools" | "Applied Algorithms";
   overview: string;
   problem: string;
   architecture: string[];
@@ -242,7 +241,7 @@ export const projects: Project[] = [
     title: "Distributed Job Scheduling Platform",
     subtitle: "A fault-tolerant scheduler for immediate, delayed, and cron-based execution.",
     repo: "https://github.com/Vcode2407/distributed-job-scheduler",
-    featuredMetric: "100,000+ jobs/day",
+    featuredMetric: "10,000-job load test",
     tags: [
       "Java 21",
       "Spring Boot 3",
@@ -275,7 +274,7 @@ export const projects: Project[] = [
       "Batch leasing reduces round trips for due-job scans.",
       "Kafka fan-out lets worker pools scale independently from API traffic.",
       "Indexed scheduled-time scans keep delayed jobs efficient as the queue grows.",
-      "Validated more than 100,000 jobs/day under load."
+      "Verified 10,000 jobs across 100 simulated workers with zero failures in the recorded load test."
     ],
     reliability: [
       "At-least-once delivery with idempotency-aware worker execution.",
@@ -289,45 +288,88 @@ export const projects: Project[] = [
       "At-least-once semantics are practical when duplicate prevention and recovery paths are explicit."
     ],
     metrics: [
-      { label: "Jobs/day", value: "100,000+" },
+      { label: "Jobs tested", value: "10,000" },
+      { label: "Workers", value: "100" },
+      { label: "Failures", value: "0" },
       { label: "Delivery", value: "At-least-once" },
-      { label: "Execution modes", value: "Immediate, delayed, cron" }
+      { label: "Execution", value: "Immediate, delayed, cron" }
+    ]
+  },
+  {
+    slug: "candidate-ranking",
+    title: "Intelligent Candidate Ranking",
+    subtitle: "A deterministic Python ranking pipeline designed for a 100,000-profile challenge dataset.",
+    repo: "https://github.com/Vcode2407/redrob-intelligent-candidate-ranking",
+    featuredMetric: "73.32-second full run",
+    tags: ["Python", "Algorithms", "Streaming JSONL", "Top-K Ranking", "Unit Testing", "Data Validation"],
+    category: "Applied Algorithms",
+    overview:
+      "Built a CPU-only pipeline that extracts evidence, scores candidate fit, maintains a bounded top-K, and produces a validated 100-row submission.",
+    problem:
+      "The ranking task required distinguishing production evidence from keyword-heavy profiles while processing 100,000 records within strict runtime and memory limits.",
+    architecture: [
+      "Streams JSONL records instead of loading the full dataset into memory.",
+      "Extracts technical, experience, career, behavior, and risk signals from each profile.",
+      "Maintains a bounded top-100 ranking and generates candidate-specific reasons.",
+      "Validates unique IDs, complete ranks, score ordering, and output structure before delivery."
+    ],
+    decisions: [
+      "Weighted career-history evidence more heavily than free-text skill lists.",
+      "Used a deterministic scoring formula so every result can be reproduced and audited.",
+      "Kept the runtime CPU-only with no external API dependency during ranking."
+    ],
+    scaling: [
+      "Processed the 100,000-profile challenge pool in 73.32 seconds in the recorded full run.",
+      "Used streaming input and bounded top-K storage to control memory growth."
+    ],
+    reliability: [
+      "Unit tests cover ranking behavior and submission requirements.",
+      "The final submission passed the challenge validator with 100 unique, ordered candidates.",
+      "Candidate-specific explanations are grounded in extracted profile evidence."
+    ],
+    lessons: [
+      "A useful ranking system must make both positive signals and penalties explainable.",
+      "Determinism makes debugging and reviewer trust easier than opaque score generation.",
+      "Streaming and bounded data structures often matter more than model complexity at this scale."
+    ],
+    metrics: [
+      { label: "Profiles", value: "100,000" },
+      { label: "Runtime", value: "73.32s" },
+      { label: "Final ranks", value: "100" },
+      { label: "External APIs", value: "0" }
     ]
   },
   {
     slug: "multi-agent-routing",
     title: "Multi-Agent Routing Platform",
-    subtitle: "High-throughput multi-agent AI orchestration system with independent scaling and failure isolation.",
+    subtitle: "A Java 21 multi-module architecture prototype for routing citizen-service requests across specialist agents.",
     repo: "https://github.com/Vcode2407/multi-agent-citizen-routing-platform",
-    featuredMetric: "1200 req/min",
-    tags: ["Azure", "Semantic Kernel", "AKS", "Kafka", "MongoDB", "App Insights"],
+    featuredMetric: "10 Maven modules",
+    tags: ["Java 21", "Spring Boot", "Kafka", "MongoDB", "JSON Schema", "JUnit"],
     category: "AI Infrastructure",
     overview:
-      "Orchestrated five LLM agents on AKS and Kafka for citizen-service routing with independent scaling, failure isolation, and targeted recovery.",
+      "Established service boundaries, shared contracts, Kafka schemas, test support, and architecture checks for a planned multi-agent routing platform.",
     problem:
-      "Single-agent routing degraded under mixed query types because reasoning, retrieval, validation, and escalation concerns competed inside one execution path.",
+      "The prototype explores how routing, specialist agents, and validation can remain independently testable as the system grows.",
     architecture: [
-      "API gateway accepts citizen-service queries and emits routing work.",
-      "Kafka separates classification, retrieval, validation, and escalation stages.",
-      "Semantic Kernel coordinates specialized agents deployed on AKS.",
-      "MongoDB stores routing context, outcomes, and evaluation traces.",
-      "Azure App Insights identifies recurring reasoning-chain failures."
+      "A Maven reactor defines gateway, orchestrator, specialist-agent, validator, benchmark, and shared-support modules.",
+      "Shared JSON schemas define agent request and response contracts.",
+      "Kafka topic configuration and local Docker infrastructure prepare the asynchronous boundaries.",
+      "JUnit architecture tests verify the required service-layer structure."
     ],
     decisions: [
-      "Chose multi-agent decomposition to scale specialized reasoning paths independently.",
-      "Chose Kafka to buffer spikes and isolate agent failures from the API layer.",
-      "Chose AKS to independently deploy, autoscale, and recover agent workloads.",
-      "Rejected a single-agent architecture because failures were harder to localize and throughput scaled as one monolith."
+      "Separated gateway, orchestration, specialist, and validation concerns into explicit modules.",
+      "Versioned shared contracts before implementing distributed message flows.",
+      "Added architecture tests early so package and layer boundaries remain enforceable."
     ],
     scaling: [
-      "Sustained 1,200+ requests/min under load.",
-      "Kept p95 latency under 300ms for routing decisions.",
-      "Scaled agents by query type rather than scaling the full system uniformly."
+      "Provides a benchmark-engine module and load-test structure for future measured validation.",
+      "Keeps specialist services independently deployable in the target architecture."
     ],
     reliability: [
-      "99.2% uptime across the measured run.",
-      "Targeted recovery paths for individual agent failures.",
-      "Evaluation traces captured recurring reasoning-chain failures for iterative fixes."
+      "Architecture smoke tests protect required module structure.",
+      "Schema validation catches malformed agent messages at contract boundaries.",
+      "Local Kafka configuration makes integration work reproducible."
     ],
     lessons: [
       "Multi-agent systems need infrastructure boundaries as much as prompt boundaries.",
@@ -335,50 +377,10 @@ export const projects: Project[] = [
       "Accuracy work improves faster when telemetry captures failure categories, not only final outputs."
     ],
     metrics: [
-      { label: "Requests/min", value: "1,200+" },
-      { label: "Accuracy", value: "95%+" },
-      { label: "Uptime", value: "99.2%" },
-      { label: "p95 latency", value: "Sub-300ms" }
-    ]
-  },
-  {
-    slug: "repository-intelligence-platform",
-    title: "Repository Intelligence Platform",
-    subtitle: "A semantic codebase explorer built for natural-language repository queries.",
-    repo: "https://github.com/Vcode2407",
-    featuredMetric: "50,000+ files indexed",
-    tags: ["Java", "Spring Boot", "Neo4j", "PostgreSQL", "LLMs", "Vector Search"],
-    category: "Developer Tools",
-    overview:
-      "HackAura 2nd-place project that indexed code repositories with semantic search, RAG, and knowledge graph traversal.",
-    problem:
-      "Large repositories are hard to understand from keyword search alone when architectural relationships span files and services.",
-    architecture: [
-      "Repository ingestion parses files and extracts code structure.",
-      "Embeddings support semantic retrieval over code chunks.",
-      "Neo4j captures relationships between files, symbols, and modules.",
-      "RAG answers natural-language questions with grounded repository context."
-    ],
-    decisions: [
-      "Combined graph traversal with vector retrieval instead of relying on one retrieval strategy.",
-      "Stored metadata in PostgreSQL while using Neo4j for structural relationships.",
-      "Used Java/Spring Boot for predictable backend APIs under hackathon time pressure."
-    ],
-    scaling: [
-      "Indexed 50,000+ code files.",
-      "Split ingestion and query concerns so indexing did not block interactive use."
-    ],
-    reliability: [
-      "Grounded answers in retrieved code context.",
-      "Kept graph relationships available for explainable traversal paths."
-    ],
-    lessons: [
-      "Developer tools become more useful when semantic search and structural context work together.",
-      "Graph-backed explanations make codebase answers easier to trust."
-    ],
-    metrics: [
-      { label: "Indexed files", value: "50,000+" },
-      { label: "Result", value: "2nd place" }
+      { label: "Maven modules", value: "10" },
+      { label: "Specialist agents", value: "5" },
+      { label: "Runtime", value: "Java 21" },
+      { label: "Stage", value: "Prototype" }
     ]
   }
 ];
@@ -417,9 +419,9 @@ export const openSource = [
 ];
 
 export const achievements = [
-  "AIR 7 nationally among 50,000+ candidates in SRMJEEM 2026.",
   "President of Edutech Club at VIT-AP University, delivering a 12-session systems design, AI, and placement curriculum to 500+ members.",
-  "S Grade in Data Structures and Algorithms; solved 300+ LeetCode problems with 1850+ rating.",
+  "S Grade in Data Structures and Algorithms; solved 318 LeetCode problems.",
+  "Codeforces Expert with a 1622 rating.",
   "AWS Certified Developer - Associate and Databricks Certified Data Engineer."
 ];
 

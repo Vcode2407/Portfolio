@@ -9,11 +9,11 @@ Working remotely as a software engineer while pursuing M.Tech has pushed me to b
 
 ## Planning Is an Engineering Tool
 
-Reducing feature delivery time by about 30% was not only about writing code faster. It came from system design reviews, API contract mocking, and clearer implementation plans before code entered the mainline.
+Planning is not separate from implementation. Clarifying API behavior, data-model changes, edge cases, and validation steps before writing code makes reviews faster and reduces avoidable rework.
 
 ## Latency Hides in Coupling
 
-One of the largest wins came from moving notification delivery away from the critical request path. The event-driven architecture reduced p99 latency by roughly 40% because the API no longer waited on work that did not need to be synchronous.
+Request paths become harder to reason about when unrelated work is tightly coupled. Separating responsibilities and making asynchronous boundaries explicit can improve both reliability and debuggability—but the design still needs clear delivery and failure semantics.
 
 ## Observability Changes Behavior
 

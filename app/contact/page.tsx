@@ -28,7 +28,6 @@ export default function ContactPage() {
       <section className="py-12 md:py-16">
         <div className="container grid gap-4 md:grid-cols-2">
           <ContactCard icon={<Mail className="size-5" />} label="Email" value={siteConfig.email} href={`mailto:${siteConfig.email}`} />
-          <ContactCard icon={<Mail className="size-5" />} label="Profile Email" value={siteConfig.secondaryEmail} href={`mailto:${siteConfig.secondaryEmail}`} />
           <ContactCard icon={<BrandGithub className="size-5" />} label="GitHub" value="github.com/Vcode2407" href={siteConfig.links.github} />
           <ContactCard icon={<BrandLinkedin className="size-5" />} label="LinkedIn" value="linkedin.com/in/themanvk" href={siteConfig.links.linkedin} />
           <ContactCard icon={<ExternalLink className="size-5" />} label="Topmate" value="topmate.io/vinayme" href={siteConfig.links.topmate} />

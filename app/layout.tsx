@@ -26,7 +26,7 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} - Distributed Systems Engineer`,
+    default: `${siteConfig.name} - Software Engineer`,
     template: `%s - ${siteConfig.name}`
   },
   description: siteConfig.description,
@@ -47,13 +47,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
-    title: `${siteConfig.name} - Distributed Systems Engineer`,
+    title: `${siteConfig.name} - Software Engineer`,
     description: siteConfig.description,
     siteName: siteConfig.name
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} - Distributed Systems Engineer`,
+    title: `${siteConfig.name} - Software Engineer`,
     description: siteConfig.description
   }
 };

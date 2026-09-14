@@ -11,8 +11,7 @@ export function SiteFooter() {
         <div className="max-w-xl">
           <p className="font-semibold">{siteConfig.name}</p>
           <p className="mt-3 text-sm leading-6 text-muted-foreground">
-            Software engineer focused on distributed systems, backend engineering, open source,
-            and AI infrastructure.
+            Software engineer focused on backend applications, integrations, testing, and open source.
           </p>
           <div className="mt-5 flex flex-wrap gap-3 text-sm text-muted-foreground">
             <a className="inline-flex items-center gap-2 hover:text-foreground" href={`mailto:${siteConfig.email}`}>

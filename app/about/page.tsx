@@ -5,7 +5,7 @@ import { SectionHeading } from "@/components/section-heading";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "About Vinay Kumar's focus areas in distributed systems, backend engineering, open source, system design, and AI infrastructure."
+  description: "About Vinay Kumar's focus areas in application engineering, backend systems, testing, debugging, and open source."
 };
 
 const focusAreas = [
@@ -30,8 +30,8 @@ const focusAreas = [
     text: "Reasoning from product constraints into architecture decisions, failure modes, and measurable tradeoffs."
   },
   {
-    title: "AI Infrastructure",
-    text: "Building LLM routing systems with agent isolation, evaluation traces, backpressure, and deployment observability."
+    title: "Application Engineering",
+    text: "Translating business requirements into APIs, data flows, integrations, tests, and maintainable implementation notes."
   }
 ];
 
@@ -43,7 +43,7 @@ export default function AboutPage() {
           <SectionHeading
             eyebrow="About"
             title="A backend engineer with a systems bias."
-            description="Vinay is pursuing M.Tech Software Systems at BITS Pilani Dubai while working remotely as a software engineer at micro1."
+            description="Vinay is pursuing an M.Tech in Computer Science and Engineering at SRM University-AP, graduating in June 2028, while working remotely from India as a contract software engineer at micro1."
           />
         </div>
       </section>

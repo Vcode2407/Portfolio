@@ -29,7 +29,7 @@ export function Navigation({ searchItems }: { searchItems: SearchItem[] }) {
           </span>
           <span className="hidden min-w-0 sm:block">
             <span className="block text-sm font-semibold leading-none">{siteConfig.name}</span>
-            <span className="block truncate text-xs text-muted-foreground">Distributed Systems</span>
+            <span className="block truncate text-xs text-muted-foreground">Application Engineering</span>
           </span>
         </Link>
 

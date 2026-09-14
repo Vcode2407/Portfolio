@@ -13,17 +13,17 @@ import { experiences, openSource, projects, siteConfig } from "@/lib/site";
 export default function HomePage() {
   const posts = getAllPosts().slice(0, 3);
   const featuredProjects = projects.filter((project) =>
-    ["distributed-job-scheduler", "multi-agent-routing"].includes(project.slug)
+    ["distributed-job-scheduler", "candidate-ranking"].includes(project.slug)
   );
   const featuredExperience = experiences.filter((experience) =>
     ["micro1", "Alethe Labs"].includes(experience.company)
   );
   const focusBadges = [
-    "Distributed Systems",
-    "Backend Engineering",
-    "Open Source",
-    "System Design",
-    "AI Infrastructure"
+    "Java & Spring Boot",
+    "REST APIs",
+    "Python & SQL",
+    "TypeScript & React",
+    "Testing & Debugging"
   ];
 
   return (
@@ -34,17 +34,17 @@ export default function HomePage() {
         <div className="absolute inset-0 noise-texture" />
         <div className="container relative flex min-h-[74svh] items-center py-14 md:py-20">
           <div className="max-w-4xl">
-            <Badge variant="outline">Vinay Kumar - Distributed Systems Engineer</Badge>
+            <Badge variant="outline">Available for Summer 2027 internships in India</Badge>
             <h1 className="mt-7 max-w-4xl text-4xl font-semibold tracking-normal text-balance sm:text-5xl md:text-6xl">
               Vinay Kumar
             </h1>
             <p className="mt-5 max-w-3xl text-xl leading-8 text-foreground/88 md:text-2xl">
-              Building distributed systems, backend platforms, and AI infrastructure at scale.
+              Building reliable backend applications, integrations, and developer-facing tools.
             </p>
             <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground md:text-lg">
-              Software Engineer focused on Distributed Systems, Backend Engineering, Open Source,
-              and AI Infrastructure. Currently pursuing M.Tech Software Systems at BITS Pilani Dubai
-              while working remotely as a Software Engineer at micro1.
+              M.Tech Computer Science student at SRM University-AP, graduating June 2028. I work
+              remotely as a contract software engineer at micro1 and build with Java, Spring Boot,
+              Python, SQL, React, and TypeScript.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {focusBadges.map((badge) => (
@@ -61,6 +61,11 @@ export default function HomePage() {
                 <Link href="/projects">
                   Explore Projects <ArrowRight />
                 </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <a href={siteConfig.resumePath} target="_blank" rel="noreferrer">
+                  View Resume <ArrowRight />
+                </a>
               </Button>
               <Button asChild size="lg" variant="secondary">
                 <a href={siteConfig.links.github} target="_blank" rel="noreferrer">
@@ -80,9 +85,9 @@ export default function HomePage() {
       <AnimatedSection className="border-b border-border bg-card/20 py-12 md:py-16">
         <div className="container">
           <SectionHeading
-            eyebrow="Engineering Impact"
-            title="Concrete impact across systems, infrastructure, and open source."
-            description="Metrics pulled from project load tests, production engineering work, AI routing evaluation, and merged open-source contributions."
+            eyebrow="Verified Evidence"
+            title="Results that can be checked in code, tests, and public contributions."
+            description="Project benchmarks, algorithm practice, and merged open-source fixes—presented without inflated production claims."
           />
           <div className="mt-8">
             <MetricGrid />
@@ -95,7 +100,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Featured Projects"
             title="Featured Engineering Projects"
-            description="Two systems-oriented case studies that foreground architecture, scaling, failure modes, and measurable results."
+            description="Two evidence-backed case studies covering Java backend systems and a Python ranking pipeline."
           />
           <div className="mt-8 grid gap-4 lg:grid-cols-2">
             {featuredProjects.map((project) => (
@@ -111,7 +116,7 @@ export default function HomePage() {
                 <h3 className="mt-5 text-2xl font-semibold tracking-normal">{project.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">{project.subtitle}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {project.tags.slice(0, project.slug === "multi-agent-routing" ? 4 : 6).map((tag) => (
+                  {project.tags.slice(0, 6).map((tag) => (
                     <span key={tag} className="rounded-md border border-border px-2 py-1 text-xs text-muted-foreground">
                       {tag}
                     </span>
@@ -184,8 +189,8 @@ export default function HomePage() {
         <div className="container grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <SectionHeading
             eyebrow="Experience"
-            title="Backend product engineering with measurable latency and workflow wins."
-            description="Recent work emphasizes API architecture, asynchronous systems, CI/CD reliability, and operational tooling."
+            title="Backend product engineering grounded in implementation and debugging."
+            description="Recent work emphasizes REST APIs, data models, tests, requirement clarification, and operational troubleshooting."
           />
           <div className="relative space-y-4 before:absolute before:left-3 before:top-2 before:h-[calc(100%-1rem)] before:w-px before:bg-border">
             {featuredExperience.slice(0, 2).map((experience) => (

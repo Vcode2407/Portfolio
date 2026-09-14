@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Vinay Kumar - Distributed Systems Engineer";
+export const alt = "Vinay Kumar - Software Engineer";
 export const size = {
   width: 1200,
   height: 630
@@ -46,17 +46,17 @@ export default function Image() {
           >
             VK
           </div>
-          Distributed Systems - Backend - AI Infrastructure
+          Backend Applications - Integrations - Open Source
         </div>
         <div>
           <div style={{ fontSize: 82, fontWeight: 700, letterSpacing: 0 }}>Vinay Kumar</div>
           <div style={{ marginTop: 24, fontSize: 34, lineHeight: 1.35, color: "#b9b0a2", maxWidth: 900 }}>
-            Software Engineer focused on distributed systems, open source, and high-throughput backend platforms.
+            M.Tech Computer Science student building Java and Python backend applications, tested systems, and developer tools.
           </div>
         </div>
         <div style={{ display: "flex", gap: 20, fontSize: 25, color: "#f5b04c" }}>
-          <span>100,000+ jobs/day</span>
-          <span>1,200+ req/min</span>
+          <span>10,000-job load test</span>
+          <span>318 LeetCode problems</span>
           <span>2 OSS contributions</span>
         </div>
       </div>

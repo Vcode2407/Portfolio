@@ -42,9 +42,11 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
   const nodes =
     project.slug === "distributed-job-scheduler"
       ? ["Client", "Spring Boot API", "PostgreSQL", "Kafka", "Worker Pool", "Redis Locks"]
+      : project.slug === "candidate-ranking"
+        ? ["JSONL Input", "Feature Extraction", "Deterministic Scoring", "Bounded Top-K", "Validated CSV"]
       : project.slug === "multi-agent-routing"
-        ? ["Gateway", "Orchestrator", "Kafka", "Specialized Agents", "MongoDB"]
-        : ["Repository", "Ingestion API", "Vector Index", "Neo4j Graph", "RAG Query Layer"];
+        ? ["Gateway", "Orchestrator", "Shared Contracts", "Specialist Modules", "Validator"]
+        : ["Input", "Processing", "Validation", "Output"];
   const sections = getCaseStudySections(project.slug);
 
   return (
@@ -174,7 +176,7 @@ function getCaseStudySections(slug: string) {
         items: [
           "Batch leasing reduces database round trips under high due-job volume.",
           "Kafka fan-out lets API traffic and worker execution scale independently.",
-          "Validated 100K+ jobs/day with indexed due-time scans and isolated queues."
+          "Verified 10,000 jobs across 100 simulated workers with zero failures in the recorded load test."
         ]
       },
       {
@@ -204,9 +206,62 @@ function getCaseStudySections(slug: string) {
       {
         title: "Results",
         items: [
-          "Processed 100K+ jobs/day in load validation.",
+          "Completed a 10,000-job load test across 100 simulated workers with zero failures.",
           "Supported immediate, delayed, and cron-based execution paths.",
           "Added observability around retries, lease recovery, DLQs, and worker execution."
+        ]
+      }
+    ];
+  }
+
+  if (slug === "candidate-ranking") {
+    return [
+      {
+        title: "Requirements",
+        items: [
+          "Rank a 100,000-profile JSONL dataset against a fixed job description.",
+          "Return exactly 100 unique candidates with ordered scores and evidence-grounded reasons.",
+          "Run on CPU within the challenge's time and memory limits without external API calls."
+        ]
+      },
+      {
+        title: "Pipeline",
+        items: [
+          "Streamed records from JSONL instead of loading the full pool into memory.",
+          "Extracted technical, experience, career, behavior, and risk signals.",
+          "Maintained a bounded top-K and generated candidate-specific explanations."
+        ]
+      },
+      {
+        title: "Scoring Decisions",
+        items: [
+          "Weighted career-history evidence more heavily than self-reported skill lists.",
+          "Applied penalties for stale, inconsistent, or keyword-heavy profiles.",
+          "Kept the score deterministic so every ranking decision can be reproduced."
+        ]
+      },
+      {
+        title: "Scalability",
+        items: [
+          "Completed the recorded 100,000-profile full run in 73.32 seconds.",
+          "Used streaming input and bounded top-100 storage to control memory growth.",
+          "Avoided model calls and network dependencies in the ranking loop."
+        ]
+      },
+      {
+        title: "Validation",
+        items: [
+          "Unit tests cover core ranking and submission behavior.",
+          "Validated unique candidate IDs, ranks 1 through 100, and decreasing scores.",
+          "The final submission passed the supplied challenge validator."
+        ]
+      },
+      {
+        title: "Results",
+        items: [
+          "Produced 100 ranked candidates from the 100,000-profile pool.",
+          "Completed the full CPU-only run in 73.32 seconds.",
+          "Generated explanations grounded in extracted profile facts."
         ]
       }
     ];
@@ -215,72 +270,55 @@ function getCaseStudySections(slug: string) {
   if (slug === "multi-agent-routing") {
     return [
       {
-        title: "Why Multi-Agent",
+        title: "Architecture Goal",
         items: [
-          "Classification, retrieval, validation, and escalation had different scaling and failure profiles.",
-          "A single-agent baseline reached 68% accuracy, while specialized agents reached 95%+.",
-          "Separating agents made reasoning failures easier to isolate and recover."
+          "Separate gateway, orchestration, specialist, and validation responsibilities.",
+          "Define stable message contracts before implementing distributed flows.",
+          "Keep specialist services independently testable and deployable in the target design."
         ]
       },
       {
         title: "Architecture",
         items: [
-          "Gateway accepts citizen-service requests and forwards routing work to an orchestrator.",
-          "Kafka buffers work between orchestration and specialized agents.",
-          "MongoDB stores request context, outcomes, and evaluation traces."
+          "A 10-module Maven reactor organizes shared code, gateway, orchestration, five specialist agents, validation, and benchmarking.",
+          "Shared JSON schemas define agent request and response contracts.",
+          "Kafka configuration and Docker assets prepare the asynchronous integration boundary."
         ]
       },
       {
-        title: "Scaling Strategy",
+        title: "Verification",
         items: [
-          "Scaled specialized agents independently based on query category pressure.",
-          "Used Kafka lag as a backpressure signal for overloaded stages.",
-          "Sustained 1200+ requests/min with sub-300ms p95 latency."
+          "JUnit architecture checks verify required service layers and package boundaries.",
+          "Shared test support prepares repeatable integration fixtures.",
+          "Benchmark and load-testing modules make future performance claims measurable."
         ]
       },
       {
-        title: "Failure Isolation",
+        title: "Design Boundaries",
         items: [
-          "Agent failures do not directly take down the API gateway path.",
-          "Kafka boundaries allow retry and replay of failed stages.",
-          "Azure App Insights helped identify recurring reasoning-chain failures."
+          "Agent request and response schemas make malformed messages detectable.",
+          "Specialist services expose readiness and runtime boundaries independently.",
+          "The target Kafka design allows future retry and replay without coupling it to the request thread."
         ]
       },
       {
-        title: "Evaluation Metrics",
+        title: "Current Scope",
         items: [
-          "Measured task accuracy across 10,000+ citizen-service queries.",
-          "Tracked throughput, uptime, and latency alongside final routing quality.",
-          "Compared multi-agent results against the single-agent baseline."
+          "The repository is an architecture prototype, not a production deployment.",
+          "Measured accuracy, throughput, uptime, and latency remain future validation work.",
+          "The README and case study distinguish implemented structure from roadmap targets."
         ]
       },
       {
-        title: "Results",
+        title: "Implemented",
         items: [
-          "Reached 95%+ task accuracy, up 27 percentage points from the single-agent baseline.",
-          "Sustained 1200+ requests/min and 99.2% uptime.",
-          "Kept routing latency under sub-300ms p95."
+          "Created the 10-module Java 21 Maven structure and shared contracts.",
+          "Added architecture smoke tests across service modules.",
+          "Prepared Kafka schemas, local infrastructure, and benchmark scaffolding."
         ]
       }
     ];
   }
 
-  return [
-    {
-      title: "Architecture",
-      items: [
-        "Repository ingestion extracts code structure and prepares semantic chunks.",
-        "Vector retrieval and Neo4j graph traversal combine semantic and structural context.",
-        "RAG answers natural-language repository questions with grounded code references."
-      ]
-    },
-    {
-      title: "Results",
-      items: [
-        "Indexed 50,000+ code files.",
-        "Placed 2nd at HackAura.",
-        "Demonstrated repository intelligence through semantic search and graph-backed traversal."
-      ]
-    }
-  ];
+  return [];
 }
