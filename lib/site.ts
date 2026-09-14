@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: "Vinay Kumar",
-  title: "Software Engineer focused on backend applications, integrations, testing, and open source.",
+  title: "Software Engineer focused on backend systems, AI benchmarks, deterministic testing, and open source.",
   description:
-    "Portfolio of Vinay Kumar, an M.Tech Computer Science student and software engineer building Java and Python backend applications, integrations, and tested systems.",
+    "Portfolio of Vinay Kumar, an M.Tech Computer Science student building Java and Python backend systems and deterministic Go and Rust AI coding benchmarks.",
   location: "Hyderabad, India",
   email: "vkslog69@gmail.com",
   phone: "+91-83099-76969",
@@ -47,6 +47,30 @@ export type Experience = {
 };
 
 export const experiences: Experience[] = [
+  {
+    company: "Crossing Hurdles",
+    role: "AI Coding Annotator (AI Benchmark Engineering)",
+    period: "Sep 2026 - Present",
+    location: "Remote, project-based freelance",
+    summary:
+      "Designs and validates deterministic coding benchmarks in Go and Rust for databases, distributed systems, crash recovery, and software-supply-chain security.",
+    challenges: [
+      "Real-world coding tasks must expose implementation and reasoning failures while remaining objectively verifiable.",
+      "Crash recovery, protocol invariants, and supply-chain security require adversarial cases beyond happy-path tests.",
+      "Every benchmark package must remain reproducible inside an isolated environment."
+    ],
+    architecture: [
+      "Builds complete Terminal-Bench tasks with specifications, Dockerized environments, and reference solutions.",
+      "Implements isolated verifiers and deterministic suites for failure, security, and restart-consistency cases.",
+      "Runs static checks, rubric reviews, and Oracle/NOP evaluations before submission."
+    ],
+    impact: [
+      "Packages reproducible benchmark submissions for upload to Deccan AI.",
+      "Covers adversarial failures, protocol invariants, security checks, and restart consistency.",
+      "Connects benchmark specifications, reference implementations, and verification evidence in one reviewable deliverable."
+    ],
+    technologies: ["Go", "Rust", "Docker", "Distributed Systems", "Databases", "Security Testing"]
+  },
   {
     company: "micro1",
     role: "Software Engineer, Contract",
@@ -224,7 +248,7 @@ export type Project = {
   repo: string;
   featuredMetric: string;
   tags: string[];
-  category: "Distributed Systems" | "AI Infrastructure" | "Developer Tools" | "Applied Algorithms";
+  category: "Distributed Systems" | "Backend Systems" | "AI Infrastructure" | "Developer Tools" | "Applied Algorithms";
   overview: string;
   problem: string;
   architecture: string[];
@@ -340,47 +364,48 @@ export const projects: Project[] = [
     ]
   },
   {
-    slug: "multi-agent-routing",
-    title: "Multi-Agent Routing Platform",
-    subtitle: "A Java 21 multi-module architecture prototype for routing citizen-service requests across specialist agents.",
-    repo: "https://github.com/Vcode2407/multi-agent-citizen-routing-platform",
-    featuredMetric: "10 Maven modules",
-    tags: ["Java 21", "Spring Boot", "Kafka", "MongoDB", "JSON Schema", "JUnit"],
-    category: "AI Infrastructure",
+    slug: "cloud-drive",
+    title: "CloudDrive",
+    subtitle: "A tested Spring Boot backend for authenticated cloud file storage and sharing.",
+    repo: "https://github.com/Vcode2407/Cloud-Drive",
+    featuredMetric: "Testcontainers integration coverage",
+    tags: ["Java", "Spring Boot", "PostgreSQL", "AWS S3", "Redis", "Elasticsearch", "Docker"],
+    category: "Backend Systems",
     overview:
-      "Established service boundaries, shared contracts, Kafka schemas, test support, and architecture checks for a planned multi-agent routing platform.",
+      "Built a Google Drive-style backend with authenticated REST APIs, relational metadata, object storage, caching, search, migrations, and automated tests.",
     problem:
-      "The prototype explores how routing, specialist agents, and validation can remain independently testable as the system grows.",
+      "A file platform must keep identity, metadata, object bytes, versions, shares, and cache state consistent while preserving secure access and recoverable deletes.",
     architecture: [
-      "A Maven reactor defines gateway, orchestrator, specialist-agent, validator, benchmark, and shared-support modules.",
-      "Shared JSON schemas define agent request and response contracts.",
-      "Kafka topic configuration and local Docker infrastructure prepare the asynchronous boundaries.",
-      "JUnit architecture tests verify the required service-layer structure."
+      "Spring Boot controllers expose authentication, file, folder, version, sharing, and search APIs.",
+      "PostgreSQL stores users, metadata, versions, shares, refresh tokens, and resumable-upload sessions.",
+      "AWS S3 stores file bytes while Redis caches hot metadata and Elasticsearch indexes searchable fields.",
+      "Flyway migrations and Docker Compose make the data services reproducible."
     ],
     decisions: [
-      "Separated gateway, orchestration, specialist, and validation concerns into explicit modules.",
-      "Versioned shared contracts before implementing distributed message flows.",
-      "Added architecture tests early so package and layer boundaries remain enforceable."
+      "Separated object bytes from relational metadata and stored SHA-256 hashes alongside object keys.",
+      "Used rotating persisted refresh tokens while keeping access tokens stateless.",
+      "Made deletes soft by default and guarded permanent object deletion against remaining metadata references."
     ],
     scaling: [
-      "Provides a benchmark-engine module and load-test structure for future measured validation.",
-      "Keeps specialist services independently deployable in the target architecture."
+      "Keeps large file bytes in S3 instead of the application database.",
+      "Uses Redis for frequently accessed metadata and Elasticsearch for low-latency discovery."
     ],
     reliability: [
-      "Architecture smoke tests protect required module structure.",
-      "Schema validation catches malformed agent messages at contract boundaries.",
-      "Local Kafka configuration makes integration work reproducible."
+      "Mockito unit tests cover service behavior and error paths.",
+      "Testcontainers integration tests exercise PostgreSQL-backed workflows.",
+      "Flyway migrations version the source-of-truth schema."
     ],
     lessons: [
-      "Multi-agent systems need infrastructure boundaries as much as prompt boundaries.",
-      "Kafka is valuable when reasoning stages need backpressure and replay, not just throughput.",
-      "Accuracy work improves faster when telemetry captures failure categories, not only final outputs."
+      "Object storage and metadata databases need explicit consistency boundaries.",
+      "Secure file sharing depends on authorization checks at every metadata and download path.",
+      "Integration tests catch persistence and migration failures that isolated unit tests cannot."
     ],
     metrics: [
-      { label: "Maven modules", value: "10" },
-      { label: "Specialist agents", value: "5" },
-      { label: "Runtime", value: "Java 21" },
-      { label: "Stage", value: "Prototype" }
+      { label: "Backend", value: "Spring Boot 3" },
+      { label: "Metadata", value: "PostgreSQL" },
+      { label: "Objects", value: "AWS S3" },
+      { label: "Cache", value: "Redis" },
+      { label: "Testing", value: "Testcontainers" }
     ]
   }
 ];

@@ -13,7 +13,7 @@ type ProjectFilterProps = {
   projects: Project[];
 };
 
-const filters = ["All", "Distributed Systems", "Applied Algorithms", "AI Infrastructure"] as const;
+const filters = ["All", "Distributed Systems", "Backend Systems", "Applied Algorithms", "AI Infrastructure"] as const;
 
 export function ProjectFilter({ projects }: ProjectFilterProps) {
   const [active, setActive] = useState<(typeof filters)[number]>("All");

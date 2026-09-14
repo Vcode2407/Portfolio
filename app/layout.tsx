@@ -39,7 +39,11 @@ export const metadata: Metadata = {
     "OpenTelemetry",
     "Kafka",
     "Spring Boot",
-    "AI infrastructure"
+    "AI infrastructure",
+    "AI benchmark engineering",
+    "Go",
+    "Rust",
+    "deterministic testing"
   ],
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,

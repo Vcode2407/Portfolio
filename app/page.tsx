@@ -13,17 +13,18 @@ import { experiences, openSource, projects, siteConfig } from "@/lib/site";
 export default function HomePage() {
   const posts = getAllPosts().slice(0, 3);
   const featuredProjects = projects.filter((project) =>
-    ["distributed-job-scheduler", "candidate-ranking"].includes(project.slug)
+    ["distributed-job-scheduler", "candidate-ranking", "cloud-drive"].includes(project.slug)
   );
   const featuredExperience = experiences.filter((experience) =>
-    ["micro1", "Alethe Labs"].includes(experience.company)
+    ["Crossing Hurdles", "micro1"].includes(experience.company)
   );
   const focusBadges = [
     "Java & Spring Boot",
-    "REST APIs",
+    "Go & Rust",
+    "AI Benchmark Engineering",
     "Python & SQL",
-    "TypeScript & React",
-    "Testing & Debugging"
+    "Distributed Systems",
+    "Deterministic Testing"
   ];
 
   return (
@@ -43,8 +44,8 @@ export default function HomePage() {
             </p>
             <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground md:text-lg">
               M.Tech Computer Science student at SRM University-AP, graduating June 2028. I work
-              remotely as a contract software engineer at micro1 and build with Java, Spring Boot,
-              Python, SQL, React, and TypeScript.
+              remotely in AI benchmark engineering at Crossing Hurdles and backend product engineering
+              at micro1, building with Go, Rust, Java, Spring Boot, PostgreSQL, React, and Python.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {focusBadges.map((badge) => (
