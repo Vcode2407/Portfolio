@@ -35,7 +35,7 @@ export default function HomePage() {
         <div className="absolute inset-0 noise-texture" />
         <div className="container relative flex min-h-[74svh] items-center py-14 md:py-20">
           <div className="max-w-4xl">
-            <Badge variant="outline">Available for Summer 2027 internships in India</Badge>
+            <Badge variant="outline">Summer 2027 internships | Open to relocation with sponsorship</Badge>
             <h1 className="mt-7 max-w-4xl text-4xl font-semibold tracking-normal text-balance sm:text-5xl md:text-6xl">
               Vinay Kumar
             </h1>

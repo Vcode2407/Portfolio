@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { AnimatedSection } from "@/components/animated-section";
 import { ExperienceTimeline } from "@/components/experience-timeline";
 import { SectionHeading } from "@/components/section-heading";
-import { achievements, certifications, experiences, skillGroups } from "@/lib/site";
+import { achievements, experiences, skillGroups } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Experience",
@@ -55,24 +55,12 @@ export default function ExperiencePage() {
       <AnimatedSection className="py-12 md:py-16">
         <div className="container grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <SectionHeading eyebrow="Leadership" title="Signals beyond coursework." />
-          <div className="grid gap-4">
-            <div className="grid gap-3">
-              {achievements.map((achievement) => (
-                <div key={achievement} className="rounded-lg border border-border bg-card p-4 text-sm leading-6 text-muted-foreground">
-                  {achievement}
-                </div>
-              ))}
-            </div>
-            <div className="rounded-lg border border-border bg-card p-5 shadow-panel">
-              <h2 className="font-mono text-xs uppercase text-muted-foreground">Certifications</h2>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {certifications.map((certification) => (
-                  <span key={certification} className="rounded-md border border-border bg-secondary px-2 py-1 text-xs text-muted-foreground">
-                    {certification}
-                  </span>
-                ))}
+          <div className="grid gap-3">
+            {achievements.map((achievement) => (
+              <div key={achievement} className="rounded-lg border border-border bg-card p-4 text-sm leading-6 text-muted-foreground">
+                {achievement}
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </AnimatedSection>

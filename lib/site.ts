@@ -446,16 +446,7 @@ export const openSource = [
 export const achievements = [
   "President of Edutech Club at VIT-AP University, delivering a 12-session systems design, AI, and placement curriculum to 500+ members.",
   "S Grade in Data Structures and Algorithms; solved 318 LeetCode problems.",
-  "Codeforces Expert with a 1622 rating.",
-  "AWS Certified Developer - Associate and Databricks Certified Data Engineer."
-];
-
-export const certifications = [
-  "AWS Certified Developer - Associate",
-  "Databricks Certified Data Engineer Professional",
-  "Power Query Mastery",
-  "Android app using Kotlin",
-  "ShaliniVirtuals"
+  "Codeforces Expert with a 1622 rating."
 ];
 
 export const skillGroups = [
