@@ -159,7 +159,7 @@ export const experiences: Experience[] = [
     company: "TMEIC India",
     role: "Software Engineering Intern",
     period: "Mar 2024 - Sep 2024",
-    location: "Tumkur, Karnataka, India",
+    location: "",
     summary:
       "Developed internal business applications and API integrations to support digitization initiatives and process automation.",
     challenges: [
