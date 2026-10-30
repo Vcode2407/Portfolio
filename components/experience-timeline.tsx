@@ -13,7 +13,7 @@ export function ExperienceTimeline({ experiences }: { experiences: Experience[] 
               <Badge>{experience.company}</Badge>
               <h2 className="mt-4 text-2xl font-semibold tracking-normal">{experience.role}</h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                {experience.period} - {experience.location}
+                {experience.period}{experience.location ? ` - ${experience.location}` : ""}
               </p>
             </div>
             <div className="flex max-w-full flex-wrap gap-2">
@@ -25,11 +25,13 @@ export function ExperienceTimeline({ experiences }: { experiences: Experience[] 
             </div>
           </div>
           <p className="mt-5 max-w-3xl text-sm leading-6 text-muted-foreground">{experience.summary}</p>
-          <div className="mt-6 grid gap-5 lg:grid-cols-3">
-            <ImpactColumn title="Challenges" items={experience.challenges} />
-            <ImpactColumn title="Architecture Decisions" items={experience.architecture} />
-            <ImpactColumn title="Impact" items={experience.impact} />
-          </div>
+          {(experience.challenges.length > 0 || experience.architecture.length > 0 || experience.impact.length > 0) && (
+            <div className="mt-6 grid gap-5 lg:grid-cols-3">
+              {experience.challenges.length > 0 && <ImpactColumn title="Challenges" items={experience.challenges} />}
+              {experience.architecture.length > 0 && <ImpactColumn title="Architecture Decisions" items={experience.architecture} />}
+              {experience.impact.length > 0 && <ImpactColumn title="Impact" items={experience.impact} />}
+            </div>
+          )}
         </article>
       ))}
     </div>

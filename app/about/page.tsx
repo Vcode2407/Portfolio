@@ -19,15 +19,15 @@ const focusAreas = [
   },
   {
     title: "Backend Debugging",
-    text: "Investigating production issues through logs, reproduction steps, root cause analysis, and customer-facing support context."
+    text: "Investigating failures through logs, small reproductions, root-cause analysis, and regression tests."
   },
   {
     title: "Open Source",
     text: "Contributing small, well-tested fixes to widely used infrastructure projects such as OpenTelemetry Java and fmt."
   },
   {
-    title: "System Design",
-    text: "Reasoning from product constraints into architecture decisions, failure modes, and measurable tradeoffs."
+    title: "Algorithms & Software Design",
+    text: "Applying data structures, concurrency, and clear service boundaries to practical software problems."
   },
   {
     title: "Application Engineering",
@@ -43,7 +43,7 @@ export default function AboutPage() {
           <SectionHeading
             eyebrow="About"
             title="A backend engineer with a systems bias."
-            description="Vinay is pursuing an M.Tech in Computer Science and Engineering at SRM University-AP, graduating in June 2028, while building and supporting backend applications, workflow automation, integrations, and deterministic tests through micro1 and Crossing Hurdles."
+            description="Vinay is a Software Engineer at Mercor and an M.Tech Computer Science and Engineering student at SRM University-AP, with expected graduation in May 2028. His work through micro1 and Crossing Hurdles includes backend applications, API integrations, reproducible evaluation environments, and deterministic tests. He is available for full-time internships from 31 May 2027."
           />
         </div>
       </section>

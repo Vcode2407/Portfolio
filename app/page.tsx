@@ -22,9 +22,9 @@ export default function HomePage() {
     "Java & Spring Boot",
     "Python & FastAPI",
     "REST APIs & Integrations",
-    "Workflow Automation",
-    "Testing & Troubleshooting",
-    "Distributed Systems",
+    "JavaScript & TypeScript",
+    "Linux, Git & Regression Tests",
+    "Data Structures & Systems Design",
   ];
 
   return (
@@ -35,7 +35,7 @@ export default function HomePage() {
         <div className="absolute inset-0 noise-texture" />
         <div className="container relative flex min-h-[74svh] items-center py-14 md:py-20">
           <div className="max-w-4xl">
-            <Badge variant="outline">Summer 2027 internships | Open to relocation with sponsorship</Badge>
+            <Badge variant="outline">Full-time internships from 31 May 2027 | Relocation subject to work authorization</Badge>
             <h1 className="mt-7 max-w-4xl text-4xl font-semibold tracking-normal text-balance sm:text-5xl md:text-6xl">
               Vinay Kumar
             </h1>
@@ -43,9 +43,9 @@ export default function HomePage() {
               Building reliable backend applications, integrations, and developer-facing tools.
             </p>
             <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground md:text-lg">
-              M.Tech Computer Science student at SRM University-AP, graduating June 2028. I build
-              and support Java/Spring Boot and Python/FastAPI applications, PostgreSQL-backed workflows,
-              REST and SaaS integrations, and deterministic tests through micro1 and Crossing Hurdles.
+              Software Engineer at Mercor and M.Tech Computer Science student at SRM University-AP,
+              graduating May 2028. My backend and evaluation work through micro1 and Crossing Hurdles
+              covers Java/Python applications, APIs, data models, reproducible tests, and root-cause debugging.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {focusBadges.map((badge) => (
@@ -101,7 +101,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Featured Projects"
             title="Featured Engineering Projects"
-            description="Two evidence-backed case studies covering Java backend systems and a Python ranking pipeline."
+            description="Three case studies covering distributed scheduling, a Python ranking pipeline, and authenticated cloud file storage."
           />
           <div className="mt-8 grid gap-4 lg:grid-cols-2">
             {featuredProjects.map((project) => (

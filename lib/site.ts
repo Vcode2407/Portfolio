@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: "Vinay Kumar",
-  title: "Application and backend engineer focused on internal tools, integrations, testing, and open source.",
+  title: "Software engineer focused on backend systems, reproducible tests, and open source.",
   description:
-    "Portfolio of Vinay Kumar, an M.Tech Computer Science student building Java and Python applications, workflow automation, integrations, and tested backend systems.",
+    "Portfolio of Vinay Kumar, a software engineer and M.Tech Computer Science student building Java, Python, and JavaScript applications, reliable backend systems, and reproducible tests.",
   location: "Hyderabad, India",
   email: "vkslog69@gmail.com",
   phone: "+91-83099-76969",
@@ -28,10 +28,10 @@ export const navItems = [
 export const metrics = [
   { value: "10,000", label: "Jobs Load-tested", detail: "Distributed scheduler benchmark" },
   { value: "100", label: "Simulated Workers", detail: "Concurrent scheduler load test" },
-  { value: "73.32s", label: "Ranking Runtime", detail: "100,000-profile CPU-only pipeline" },
-  { value: "318", label: "LeetCode Problems", detail: "Algorithms and data structures" },
+  { value: "19/19", label: "Reference Checks", detail: "Crossing Hurdles verifier regression" },
+  { value: "0/19", label: "Starter Passes", detail: "Untouched starter in the same checks" },
   { value: "2", label: "Merged Open Source Contributions", detail: "OpenTelemetry Java and fmt" },
-  { value: "1622", label: "Codeforces Rating", detail: "Expert rating" }
+  { value: "7", label: "Stage 1 Gates", detail: "Corrected benchmark submission" }
 ];
 
 export type Experience = {
@@ -48,28 +48,40 @@ export type Experience = {
 
 export const experiences: Experience[] = [
   {
+    company: "Mercor",
+    role: "Software Engineer",
+    period: "26 Oct 2026 - Present",
+    location: "",
+    summary:
+      "Contribute to a software engineering project while pursuing an M.Tech in Computer Science and Engineering.",
+    challenges: [],
+    architecture: [],
+    impact: [],
+    technologies: []
+  },
+  {
     company: "Crossing Hurdles",
     role: "AI Coding Annotator (Freelance)",
     period: "Sep 2026 - Present",
     location: "Remote, project-based freelance",
     summary:
-      "Designs and validates deterministic coding benchmarks in Go and Rust for databases, distributed systems, crash recovery, and software-supply-chain security.",
+      "Authors and validates coding tasks for AI evaluation, with reproducible environments and tests for distributed systems, crash recovery, and security.",
     challenges: [
-      "Real-world coding tasks must expose implementation and reasoning failures while remaining objectively verifiable.",
-      "Crash recovery, protocol invariants, and supply-chain security require adversarial cases beyond happy-path tests.",
-      "Every benchmark package must remain reproducible inside an isolated environment."
+      "All eight remote evaluation runs stopped during verifier startup, before behavioral tests could run.",
+      "Zero rewards initially resembled incorrect solutions; detailed logs instead identified a filesystem-boundary error.",
+      "Local Docker checks passed, so the remote mounted-folder behavior needed a separate reproduction."
     ],
     architecture: [
-      "Builds complete Terminal-Bench tasks with specifications, Dockerized environments, and reference solutions.",
-      "Implements isolated verifiers and deterministic suites for failure, security, and restart-consistency cases.",
-      "Runs static checks, rubric reviews, and Oracle/NOP evaluations before submission."
+      "Reproduced the startup error with a nested mounted folder and traced it to a same-filesystem-device assumption.",
+      "Removed that assumption while retaining permission, link, and file-identity safeguards.",
+      "Added mounted-folder regression cases and compared reference and untouched-starter behavior."
     ],
     impact: [
-      "Packages reproducible benchmark submissions for upload to Deccan AI.",
-      "Covers adversarial failures, protocol invariants, security checks, and restart consistency.",
-      "Connects benchmark specifications, reference implementations, and verification evidence in one reviewable deliverable."
+      "Verified 19/19 reference checks and 0/19 passes for the untouched starter.",
+      "The corrected submission passed all seven Stage 1 gates.",
+      "Kept infrastructure startup failures distinct from genuine model-solution failures."
     ],
-    technologies: ["Go", "Rust", "Docker", "Distributed Systems", "Databases", "Security Testing"]
+    technologies: ["Docker", "Linux", "Regression Testing", "Distributed Systems", "AI Code Evaluation"]
   },
   {
     company: "micro1",
@@ -94,30 +106,6 @@ export const experiences: Experience[] = [
       "Documents API behavior and implementation decisions for review and follow-up work."
     ],
     technologies: ["Java", "Spring Boot", "PostgreSQL", "React", "CI/CD", "Observability"]
-  },
-  {
-    company: "Mercor",
-    role: "Software Engineer",
-    period: "May 2025 - Apr 2026",
-    location: "Remote",
-    summary:
-      "Handled backend debugging, production support tickets, log analysis, and stakeholder communication for customer-reported issues.",
-    challenges: [
-      "Production issues required fast triage across logs, user reports, and reproducible failure cases.",
-      "Customer-facing tickets needed clear status communication while engineering investigation continued.",
-      "Reliability improvements had to be grounded in repeatable root cause analysis."
-    ],
-    architecture: [
-      "Built a triage rhythm around logs, reproduction steps, root cause notes, and fix validation.",
-      "Collaborated with stakeholders to communicate issue scope, status, and resolution paths.",
-      "Contributed debugging insights back into reliability improvements for backend services."
-    ],
-    impact: [
-      "Improved speed and clarity of issue resolution by isolating reproducible bugs from support tickets.",
-      "Strengthened production reliability through recurring failure analysis and debugging.",
-      "Built application-support experience that complements backend systems engineering."
-    ],
-    technologies: ["Backend Debugging", "Application Support", "Log Analysis", "Root Cause Analysis", "APIs"]
   },
   {
     company: "Alethe Labs",
@@ -145,31 +133,31 @@ export const experiences: Experience[] = [
   },
   {
     company: "Outlier",
-    role: "Freelance Software Developer, Backend & Automation",
+    role: "AI Coding Evaluator (Freelance)",
     period: "May 2025 - Feb 2026",
     location: "Remote",
     summary:
-      "Delivered backend and automation work in a freelance setting, with emphasis on debugging, repeatability, and implementation quality.",
+      "Evaluated AI-generated code against task guidelines, checking correctness, edge cases, and the quality of explanations.",
     challenges: [
-      "Freelance tasks required quickly understanding varied backend and automation requirements.",
-      "Automation work needed predictable behavior across changing inputs and edge cases.",
-      "Quality expectations required clear assumptions and reliable validation."
+      "Each task required understanding its instructions before judging a proposed solution.",
+      "Plausible code could still miss edge cases or fail to meet the requested behavior.",
+      "Useful feedback needed specific evidence rather than unsupported impressions."
     ],
     architecture: [
-      "Structured work around small backend utilities, automation workflows, and reproducible checks.",
-      "Validated outputs against task constraints before delivery.",
-      "Kept implementation notes explicit so follow-up debugging was easier."
+      "Reviewed code and reasoning against the supplied evaluation criteria.",
+      "Used reproducible examples and tests to examine correctness and failure cases.",
+      "Documented defects and clear reasons for evaluation decisions."
     ],
     impact: [
-      "Built practical automation and backend debugging experience across varied task contexts.",
-      "Improved repeatability of manual workflows through targeted automation.",
-      "Strengthened ability to move from ambiguous requirements to working software."
+      "Provided guideline-based feedback on code correctness and explanation quality.",
+      "Separated working implementations from answers that only appeared convincing.",
+      "Built a careful, evidence-based approach to reviewing AI outputs."
     ],
-    technologies: ["Python", "Automation", "Backend Development", "Debugging"]
+    technologies: ["Code Review", "Testing", "Debugging", "AI Output Evaluation"]
   },
   {
     company: "TMEIC India",
-    role: "Intern",
+    role: "Software Engineering Intern",
     period: "Mar 2024 - Sep 2024",
     location: "Tumkur, Karnataka, India",
     summary:
@@ -190,54 +178,6 @@ export const experiences: Experience[] = [
       "Built early experience connecting APIs, automation, and stakeholder-facing tools."
     ],
     technologies: ["FastAPI", "Low-Code Platforms", "Power Automate", "Internal Tools"]
-  },
-  {
-    company: "Google for Developers",
-    role: "Android Developer Virtual Intern",
-    period: "Jan 2024 - Mar 2024",
-    location: "Remote",
-    summary:
-      "Completed a 10-week Android Developer Virtual Internship through the India Edu Program supported by Google for Developers.",
-    challenges: [
-      "Built Android fundamentals through a structured internship program.",
-      "Applied mobile development concepts across practical exercises.",
-      "Balanced coursework with independent technical upskilling."
-    ],
-    architecture: [
-      "Worked through Android development fundamentals and implementation patterns.",
-      "Practiced Kotlin-based application development concepts.",
-      "Completed program milestones across the 10-week curriculum."
-    ],
-    impact: [
-      "Added mobile development context to a backend-heavy engineering foundation.",
-      "Strengthened Kotlin and Android fundamentals.",
-      "Completed a recognized Google for Developers supported internship program."
-    ],
-    technologies: ["Android", "Kotlin", "Mobile Development"]
-  },
-  {
-    company: "DevTown",
-    role: "Business Development Manager",
-    period: "Aug 2023 - Jan 2024",
-    location: "Bengaluru, Karnataka, India",
-    summary:
-      "Built customer-facing communication and stakeholder coordination experience before moving deeper into software engineering roles.",
-    challenges: [
-      "Role required clear communication across business, learner, and operations contexts.",
-      "Stakeholder expectations needed consistent follow-up and status clarity.",
-      "Customer-facing work demanded structured problem framing."
-    ],
-    architecture: [
-      "Developed communication habits around context gathering, follow-up, and expectation setting.",
-      "Worked in a customer-facing environment that later informed support-oriented engineering work.",
-      "Built early operating discipline around ownership and accountability."
-    ],
-    impact: [
-      "Strengthened cross-functional communication for later engineering and application-support roles.",
-      "Built comfort translating ambiguous user needs into actionable next steps.",
-      "Added customer empathy to a systems and backend engineering profile."
-    ],
-    technologies: ["Stakeholder Communication", "Customer Support", "Operations"]
   }
 ];
 
@@ -444,47 +384,55 @@ export const openSource = [
 ];
 
 export const achievements = [
-  "President of Edutech Club at VIT-AP University, delivering a 12-session systems design, AI, and placement curriculum to 500+ members.",
-  "S Grade in Data Structures and Algorithms; solved 318 LeetCode problems.",
-  "Codeforces Expert with a 1622 rating."
+  "Placement lead for the current M.Tech cohort at SRM University-AP.",
+  "Former club president at VIT-AP University, with volunteering and student coordination experience.",
+  "Hackathon participation and continued data structures and algorithms practice on LeetCode and Codeforces."
 ];
 
 export const skillGroups = [
   {
     label: "Languages",
-    items: ["Java", "Python", "C++", "Go", "Kotlin", "TypeScript", "SQL", "Bash"]
+    items: ["Java", "Python", "JavaScript", "TypeScript", "SQL", "Bash"]
   },
   {
-    label: "Backend & Distributed",
+    label: "Systems & Design",
     items: [
-      "Distributed Systems",
+      "Data Structures & Algorithms",
+      "Object-Oriented Design",
+      "Linux / Unix",
       "Concurrency",
+      "Distributed Systems"
+    ]
+  },
+  {
+    label: "Backend & Web",
+    items: [
       "Spring Boot",
       "Kafka",
-      "Microservices",
       "REST APIs",
       "FastAPI",
-      "High Availability"
+      "React"
     ]
   },
   {
     label: "Data & Cloud",
-    items: ["PostgreSQL", "MongoDB", "Redis", "AWS", "Azure AKS", "Kubernetes", "Docker", "Cloud Computing"]
+    items: ["PostgreSQL", "Redis", "AWS S3 (CloudDrive project)", "Docker"]
   },
   {
-    label: "Reliability & Support",
+    label: "Testing & Developer Tools",
     items: [
       "OpenTelemetry",
-      "Prometheus",
       "Testcontainers",
+      "Git",
+      "Unit & Integration Tests",
+      "Regression Testing",
       "Log Analysis",
-      "Issue Triage",
       "Root Cause Analysis",
-      "Application Support"
+      "AI Output Evaluation"
     ]
   },
   {
-    label: "AI / ML",
-    items: ["Artificial Intelligence", "RAG", "LLM Evaluation", "Semantic Kernel", "Transformers"]
+    label: "Working Knowledge",
+    items: ["C++", "Go", "Rust"]
   }
 ];

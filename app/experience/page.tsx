@@ -17,8 +17,8 @@ export default function ExperiencePage() {
         <div className="container">
           <SectionHeading
             eyebrow="Experience"
-            title="Remote backend work, platform ownership, and measurable product impact."
-            description="Each role is framed by the engineering challenge, architectural choice, and the operational result."
+            title="Software engineering, backend systems, and careful evaluation."
+            description="Current and past engagements, with specific engineering work and verification evidence where available."
           />
         </div>
       </section>
