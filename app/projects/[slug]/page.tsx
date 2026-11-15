@@ -14,6 +14,7 @@ type ProjectPageProps = {
 };
 
 const architectureNodes: Record<string, string[]> = {
+  "batchserve-onnx": ["Prediction Request", "Bounded FIFO Queue", "ONNX Runtime CPU Batch", "Per-Request Result"],
   "release-flags": ["Publisher", "Spring Boot API", "PostgreSQL Audit Revision", "Versioned Write Result"],
   "distributed-job-scheduler": ["Client", "Spring Boot API", "PostgreSQL", "Kafka", "Worker Pool", "Redis Locks"],
   "candidate-ranking": ["JSONL Input", "Feature Extraction", "Deterministic Scoring", "Bounded Top-K", "Validated CSV"],

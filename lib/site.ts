@@ -194,6 +194,53 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "batchserve-onnx",
+    title: "BatchServe ONNX",
+    subtitle: "CPU model serving with dynamic batching, request deadlines, and a bounded queue.",
+    repo: "https://github.com/Vcode2407/batchserve-onnx",
+    featured: true,
+    featuredMetric: "1,024 → 450 model calls",
+    benchmark: {
+      href: "https://github.com/Vcode2407/batchserve-onnx/blob/main/docs/benchmark.md",
+      methodology:
+        "A local HTTP benchmark compared batch sizes capped at 1 and 16 on the same synthetic ONNX model with one CPU inference session and one intra-op thread. Each configuration ran three timed trials of 1,024 requests at 32 concurrent clients. The batched configuration used a 2 ms assembly timer."
+    },
+    tags: ["Python", "FastAPI", "ONNX Runtime", "asyncio", "Prometheus", "Docker"],
+    category: "AI Infrastructure",
+    overview:
+      "Built a CPU inference service that groups independent prediction requests and splits the model output back to callers.",
+    problem:
+      "Batching can reduce model invocations under concurrency. Waiting to assemble a batch adds latency, and an overloaded service needs to limit pending work while honoring deadlines.",
+    architecture: [
+      "FastAPI validates binary float32 inputs and assigns each request a deadline.",
+      "An asyncio worker collects a batch from a bounded FIFO queue and runs ONNX Runtime in a separate thread.",
+      "Prometheus records request outcomes, pending queue depth, queue wait, batch size, and runtime."
+    ],
+    decisions: [
+      "Dispatches when the batch is full, its timer elapses, or a queued request approaches its deadline.",
+      "Returns HTTP 503 when the pending queue is full and HTTP 504 when an admitted request runs out of time."
+    ],
+    scaling: [
+      "At 32 concurrent clients, median model calls dropped from 1,024 to 450 per trial. Median throughput rose from 101.20 to 116.60 predictions per second, and median trial p95 was 912.80 ms for single-item serving and 796.11 ms with batching.",
+      "At one sequential client, both modes invoked the model 64 times for 64 predictions. Median latency rose from 5.29 ms to 16.17 ms with batching."
+    ],
+    reliability: [
+      "A separate 384-request burst used 96 concurrent clients and a queue capacity of four. It returned 381 HTTP 200 responses and three HTTP 503 responses when the queue filled.",
+      "The queue drained to zero after the burst, and all 16 follow-up requests returned HTTP 200.",
+      "Every successful benchmark prediction matched single-item ONNX inference within numerical tolerance. Nine automated tests also exercised cancellation, deadline expiry, overload, and recovery after a failed model invocation."
+    ],
+    lessons: [
+      "Measure model invocations alongside end-to-end latency to see whether fewer calls translate into faster responses.",
+      "Test light traffic separately. An assembly timer can dominate latency when there are too few concurrent requests to form a batch."
+    ],
+    metrics: [
+      { label: "Median model calls per 1,024 predictions", value: "1,024 → 450" },
+      { label: "Median predictions per second with batching", value: "116.60" },
+      { label: "HTTP 503 responses during overload", value: "3 / 384" },
+      { label: "Successful requests after the burst", value: "16 / 16" }
+    ]
+  },
+  {
     slug: "release-flags",
     title: "Release Flags",
     subtitle: "A Java feature flag service with gradual rollouts, audited rollback, and local evaluation.",
