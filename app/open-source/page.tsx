@@ -9,7 +9,7 @@ import { openSource } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Open Source",
-  description: "Open source contributions to OpenTelemetry Java and fmt with root cause analysis and validation notes."
+  description: "Merged open-source fixes in Microsoft Kiota Java, OpenTelemetry Java, and fmt with regression-test details."
 };
 
 export default function OpenSourcePage() {
@@ -19,19 +19,19 @@ export default function OpenSourcePage() {
         <div className="container">
           <SectionHeading
             eyebrow="Open Source"
-            title="Production-grade debugging stories, not just merged-link trophies."
-            description="Each contribution is framed the way a strong engineering interview would probe it: problem, root cause, fix, and testing strategy."
+            title="Merged open-source contributions"
+            description="See the original problem, patch, and regression tests for each fix."
           />
         </div>
       </section>
 
       <AnimatedSection className="border-b border-border py-12 md:py-16">
         <div className="container grid gap-5">
-          {openSource.map((item, index) => (
+          {openSource.map((item) => (
             <article key={item.project} className="rounded-lg border border-border bg-card p-5 shadow-panel">
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
-                  <p className="font-mono text-xs uppercase text-primary">0{index + 1} - {item.repo}</p>
+                  <p className="font-mono text-xs text-primary">{item.repo}</p>
                   <h2 className="mt-3 text-2xl font-semibold tracking-normal">{item.project}</h2>
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -42,7 +42,7 @@ export default function OpenSourcePage() {
                   </Button>
                   <Button asChild variant="secondary" size="sm">
                     <a href={item.href} target="_blank" rel="noreferrer">
-                      Pull Request <ArrowUpRight />
+                      PR #{item.prNumber} <ArrowUpRight />
                     </a>
                   </Button>
                 </div>

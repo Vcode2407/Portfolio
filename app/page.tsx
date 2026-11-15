@@ -8,13 +8,10 @@ import { SectionHeading } from "@/components/section-heading";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getAllPosts } from "@/lib/blog";
-import { experiences, openSource, projects, siteConfig } from "@/lib/site";
+import { experiences, featuredProjects, openSource, siteConfig } from "@/lib/site";
 
 export default function HomePage() {
   const posts = getAllPosts().slice(0, 3);
-  const featuredProjects = projects.filter((project) =>
-    ["distributed-job-scheduler", "candidate-ranking", "cloud-drive"].includes(project.slug)
-  );
   const featuredExperience = experiences.filter((experience) =>
     ["Crossing Hurdles", "micro1"].includes(experience.company)
   );
@@ -40,7 +37,7 @@ export default function HomePage() {
               Vinay Kumar
             </h1>
             <p className="mt-5 max-w-3xl text-xl leading-8 text-foreground/88 md:text-2xl">
-              Building reliable backend applications, integrations, and developer-facing tools.
+              Backend engineering with Java, Spring Boot, and Python, focused on distributed systems and observability.
             </p>
             <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground md:text-lg">
               Software Engineer at Mercor and M.Tech Computer Science student at SRM University-AP,
@@ -86,9 +83,8 @@ export default function HomePage() {
       <AnimatedSection className="border-b border-border bg-card/20 py-12 md:py-16">
         <div className="container">
           <SectionHeading
-            eyebrow="Verified Evidence"
-            title="Results that can be checked in code, tests, and public contributions."
-            description="Project benchmarks, algorithm practice, and merged open-source fixes—presented without inflated production claims."
+            eyebrow="Results"
+            title="Local benchmarks and merged fixes"
           />
           <div className="mt-8">
             <MetricGrid />
@@ -99,11 +95,10 @@ export default function HomePage() {
       <AnimatedSection className="border-b border-border py-16 md:py-20">
         <div className="container">
           <SectionHeading
-            eyebrow="Featured Projects"
-            title="Featured Engineering Projects"
-            description="Three case studies covering distributed scheduling, a Python ranking pipeline, and authenticated cloud file storage."
+            eyebrow="Projects"
+            title="Pinned on GitHub"
           />
-          <div className="mt-8 grid gap-4 lg:grid-cols-2">
+          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {featuredProjects.map((project) => (
               <article key={project.slug} className="rounded-lg border border-border bg-card p-5 shadow-panel">
                 <div className="flex flex-wrap items-start justify-between gap-4">
@@ -134,6 +129,13 @@ export default function HomePage() {
                       GitHub <ArrowRight />
                     </a>
                   </Button>
+                  {project.benchmark ? (
+                    <Button asChild variant="outline">
+                      <a href={project.benchmark.href} target="_blank" rel="noreferrer">
+                        Benchmark <ArrowRight />
+                      </a>
+                    </Button>
+                  ) : null}
                 </div>
               </article>
             ))}
@@ -145,10 +147,9 @@ export default function HomePage() {
         <div className="container">
           <SectionHeading
             eyebrow="Open Source"
-            title="OpenTelemetry and fmt contributions, framed as engineering investigations."
-            description="Merged patches in production-grade infrastructure projects, with root cause analysis and regression validation."
+            title="Merged fixes in Kiota Java, OpenTelemetry Java, and fmt"
           />
-          <div className="mt-8 grid gap-4 lg:grid-cols-2">
+          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {openSource.map((item) => (
               <article key={item.project} className="rounded-lg border border-border bg-card p-5 shadow-panel">
                 <div className="flex flex-wrap items-start justify-between gap-3">
@@ -158,16 +159,7 @@ export default function HomePage() {
                   </div>
                   <Badge variant="outline">Merged contribution</Badge>
                 </div>
-                <ul className="mt-5 grid gap-2 text-sm leading-6 text-muted-foreground">
-                  {(item.slug === "opentelemetry"
-                    ? ["Parser recovery fix", "Regression testing", "Cross-platform validation"]
-                    : ["32-bit architecture bug", "Root cause analysis", "Cross-platform validation"]
-                  ).map((highlight) => (
-                    <li key={highlight} className="rounded-md border border-border bg-secondary/40 px-3 py-2">
-                      {highlight}
-                    </li>
-                  ))}
-                </ul>
+                <p className="mt-5 text-sm leading-6 text-muted-foreground">{item.fix}</p>
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Button asChild variant="outline">
                     <Link href={`/opensource/${item.slug}`}>
@@ -176,7 +168,7 @@ export default function HomePage() {
                   </Button>
                   <Button asChild variant="secondary">
                     <a href={item.href} target="_blank" rel="noreferrer">
-                      GitHub <GitPullRequest />
+                      PR #{item.prNumber} <GitPullRequest />
                     </a>
                   </Button>
                 </div>

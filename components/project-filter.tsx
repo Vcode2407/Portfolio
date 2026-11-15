@@ -2,7 +2,7 @@
 
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -17,19 +17,21 @@ const filters = ["All", "Distributed Systems", "Backend Systems", "Applied Algor
 
 export function ProjectFilter({ projects }: ProjectFilterProps) {
   const [active, setActive] = useState<(typeof filters)[number]>("All");
+  const availableFilters = filters.filter(
+    (filter) => filter === "All" || projects.some((project) => project.category === filter)
+  );
 
-  const visibleProjects = useMemo(() => {
-    if (active === "All") return projects;
-    return projects.filter((project) => project.category === active);
-  }, [active, projects]);
+  const visibleProjects =
+    active === "All" ? projects : projects.filter((project) => project.category === active);
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Project categories">
-        {filters.map((filter) => (
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Project categories">
+        {availableFilters.map((filter) => (
           <button
             key={filter}
             type="button"
+            aria-pressed={active === filter}
             onClick={() => setActive(filter)}
             className={cn(
               "rounded-md border border-border px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground",

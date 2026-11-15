@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { AnimatedSection } from "@/components/animated-section";
 import { ProjectFilter } from "@/components/project-filter";
 import { SectionHeading } from "@/components/section-heading";
-import { projects } from "@/lib/site";
+import { featuredProjects, projects } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -11,9 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsPage() {
-  const featuredProjects = projects.filter((project) =>
-    ["distributed-job-scheduler", "multi-agent-routing"].includes(project.slug)
-  );
+  const listedProjects = [...featuredProjects, ...projects.filter((project) => !project.featured)];
 
   return (
     <>
@@ -21,14 +19,14 @@ export default function ProjectsPage() {
         <div className="container">
           <SectionHeading
             eyebrow="Projects"
-            title="Project work presented as systems case studies."
-            description="Filter by domain and open each case study to inspect the problem, architecture, tradeoffs, scaling strategy, and reliability plan."
+            title="Backend and systems case studies"
+            description="The three projects pinned on GitHub appear first. Each case study covers the architecture and how it was tested."
           />
         </div>
       </section>
       <AnimatedSection className="py-12 md:py-16">
         <div className="container">
-          <ProjectFilter projects={featuredProjects} />
+          <ProjectFilter projects={listedProjects} />
         </div>
       </AnimatedSection>
     </>

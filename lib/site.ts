@@ -25,15 +25,6 @@ export const navItems = [
   { label: "Contact", href: "/contact" }
 ];
 
-export const metrics = [
-  { value: "10,000", label: "Jobs Load-tested", detail: "Distributed scheduler benchmark" },
-  { value: "100", label: "Simulated Workers", detail: "Concurrent scheduler load test" },
-  { value: "19/19", label: "Reference Checks", detail: "Crossing Hurdles verifier regression" },
-  { value: "0/19", label: "Starter Passes", detail: "Untouched starter in the same checks" },
-  { value: "2", label: "Merged Open Source Contributions", detail: "OpenTelemetry Java and fmt" },
-  { value: "7", label: "Stage 1 Gates", detail: "Corrected benchmark submission" }
-];
-
 export type Experience = {
   company: string;
   role: string;
@@ -186,7 +177,9 @@ export type Project = {
   title: string;
   subtitle: string;
   repo: string;
+  featured?: true;
   featuredMetric: string;
+  benchmark?: { href: string; methodology: string };
   tags: string[];
   category: "Distributed Systems" | "Backend Systems" | "AI Infrastructure" | "Developer Tools" | "Applied Algorithms";
   overview: string;
@@ -202,10 +195,16 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "distributed-job-scheduler",
-    title: "Distributed Job Scheduling Platform",
+    title: "Distributed Job Scheduler",
     subtitle: "A fault-tolerant scheduler for immediate, delayed, and cron-based execution.",
     repo: "https://github.com/Vcode2407/distributed-job-scheduler",
-    featuredMetric: "10,000-job load test",
+    featured: true,
+    featuredMetric: "10,000 jobs · 0 failures",
+    benchmark: {
+      href: "https://github.com/Vcode2407/distributed-job-scheduler/blob/main/docs/benchmark-report.md",
+      methodology:
+        "The recorded Docker Compose load test used 100 simulated workers, 100 concurrent submitters, and lease batches of 25."
+    },
     tags: [
       "Java 21",
       "Spring Boot 3",
@@ -252,11 +251,11 @@ export const projects: Project[] = [
       "At-least-once semantics are practical when duplicate prevention and recovery paths are explicit."
     ],
     metrics: [
-      { label: "Jobs tested", value: "10,000" },
-      { label: "Workers", value: "100" },
+      { label: "Jobs completed", value: "10,000" },
+      { label: "Simulated workers", value: "100" },
       { label: "Failures", value: "0" },
-      { label: "Delivery", value: "At-least-once" },
-      { label: "Execution", value: "Immediate, delayed, cron" }
+      { label: "Throughput", value: "58.47 jobs/s" },
+      { label: "p95 latency", value: "3,010 ms" }
     ]
   },
   {
@@ -308,6 +307,7 @@ export const projects: Project[] = [
     title: "CloudDrive",
     subtitle: "A tested Spring Boot backend for authenticated cloud file storage and sharing.",
     repo: "https://github.com/Vcode2407/Cloud-Drive",
+    featured: true,
     featuredMetric: "Testcontainers integration coverage",
     tags: ["Java", "Spring Boot", "PostgreSQL", "AWS S3", "Redis", "Elasticsearch", "Docker"],
     category: "Backend Systems",
@@ -347,40 +347,115 @@ export const projects: Project[] = [
       { label: "Cache", value: "Redis" },
       { label: "Testing", value: "Testcontainers" }
     ]
+  },
+  {
+    slug: "scoutsearch",
+    title: "ScoutSearch",
+    subtitle: "A local documentation search engine with explainable BM25 ranking and atomic index updates.",
+    repo: "https://github.com/Vcode2407/ScoutSearch",
+    featured: true,
+    featuredMetric: "13.91 → 2.42 ms broad-query p50",
+    benchmark: {
+      href: "https://github.com/Vcode2407/ScoutSearch/blob/main/docs/real-corpus.md",
+      methodology:
+        "The local benchmark used 1,654 passages from 382 CPython documentation files, with three timed repetitions after warming each path. It measured the search engine in-process."
+    },
+    tags: ["Python", "SQLite", "BM25", "React", "TypeScript", "Benchmarking"],
+    category: "Applied Algorithms",
+    overview:
+      "Built a document search engine with a positional inverted index, exact-phrase matching, and explanations showing how each term contributes to a result's score.",
+    problem:
+      "Engineering documentation needs searchable terms and exact phrases, with ranking that can be inspected and verified while documents are edited or imported.",
+    architecture: [
+      "The Python indexer normalizes input and stores documents, corpus statistics, and positional postings in SQLite.",
+      "The search engine uses covering indexes and SQL arithmetic for BM25 scoring. Phrase queries verify term positions before ranking.",
+      "The React interface renders results and explains per-term score contributions."
+    ],
+    decisions: [
+      "Used SQL aggregation for broad term queries and retained positional verification for exact phrases.",
+      "Used transactions for index updates and consistent snapshots for search reads."
+    ],
+    scaling: [
+      "Broad-query median latency fell from 13.91 ms to 2.42 ms on the pinned local corpus.",
+      "The same benchmark records selective, phrase, and collection-filter workloads so their tradeoffs remain visible."
+    ],
+    reliability: [
+      "All 27 query configurations matched the independent full-scan reference on match counts, top-10 rankings, and scores.",
+      "The corpus manifest and evaluation script document how to reproduce the benchmark."
+    ],
+    lessons: [
+      "Benchmark each query shape against a correctness reference before optimizing.",
+      "Keep ranking statistics and document postings on the same read snapshot during concurrent updates."
+    ],
+    metrics: [
+      { label: "Documentation passages", value: "1,654" },
+      { label: "Broad-query p50 before", value: "13.91 ms" },
+      { label: "Broad-query p50 after", value: "2.42 ms" },
+      { label: "Query configurations matching reference", value: "27/27" }
+    ]
   }
 ];
 
+export const featuredProjects = projects.filter((project) => project.featured);
+
 export const openSource = [
+  {
+    slug: "kiota-java",
+    project: "Microsoft Kiota Java",
+    repo: "microsoft/kiota-java",
+    prNumber: 2246,
+    href: "https://github.com/microsoft/kiota-java/pull/2246",
+    problem:
+      "Deserializing a Microsoft Graph enum set threw an exception when every value was unknown to the SDK.",
+    rootCause:
+      "The JSON parser filtered unknown values out and passed the resulting empty list to EnumSet.copyOf, which cannot infer an enum type from an empty list.",
+    fix:
+      "Returned null for unknown-only sets to preserve the parser's empty-input behavior. Mixed sets still retain all recognized values.",
+    testing:
+      "Added regression tests for unknown-only and mixed sets. The JSON module passed 40 tests, Spotless, and SpotBugs.",
+    timeline: "Merged November 11, 2026"
+  },
   {
     slug: "opentelemetry",
     project: "OpenTelemetry Java",
-    repo: "Apache OpenTelemetry",
+    repo: "open-telemetry/opentelemetry-java",
+    prNumber: 8480,
     href: "https://github.com/open-telemetry/opentelemetry-java/pull/8480",
     problem:
       "Baggage header parsing could discard valid members after encountering invalid percent-encoded entries.",
     rootCause:
-      "Parser recovery did not preserve valid members cleanly when one entry failed percent-decoding.",
+      "An IllegalArgumentException from percent-decoding a malformed member aborted parsing of the remaining header.",
     fix:
-      "Adjusted recovery behavior so valid baggage members remain available while invalid entries are rejected.",
+      "Skipped the malformed member and continued parsing the remaining entries in the header.",
     testing:
       "Added regression tests and validated behavior across Linux, macOS, and Windows CI.",
-    timeline: "Parser investigation -> recovery patch -> regression coverage -> merged PR"
+    timeline: "Merged June 25, 2026"
   },
   {
     slug: "fmt",
     project: "fmt",
-    repo: "C++ Formatting Library",
-    href: "https://github.com/fmtlib/fmt/pull/4813/commits",
+    repo: "fmtlib/fmt",
+    prNumber: 4813,
+    href: "https://github.com/fmtlib/fmt/pull/4813",
     problem:
-      "A 32-bit i686 fallback uint128 bug corrupted high-word behavior in hexadecimal floating formatting.",
+      "Hexadecimal floating-point formatting failed to compile on 32-bit i686 builds using fmt's fallback unsigned 128-bit type.",
     rootCause:
-      "format_hexfloat masked rounded bits with bitwise NOT, while fallback operator~ truncated to 32 bits.",
+      "format_hexfloat uses bitwise NOT to mask rounded bits, and the fallback uint128 type lacked unary operator~.",
     fix:
-      "Corrected fallback uint128 handling so high-word state survives the bitwise operation.",
+      "Implemented bitwise NOT for both halves of the fallback uint128 type.",
     testing:
-      "Validated across 32-bit and 64-bit architectures to prove the fix was not architecture-specific.",
-    timeline: "32-bit reproduction -> high-word diagnosis -> fallback fix -> cross-architecture validation"
+      "Added fallback uint128 regression coverage and verified x86-64 and i686 builds.",
+    timeline: "Merged June 18, 2026"
   }
+];
+
+export const metrics = [
+  { value: "10,000", label: "Scheduler jobs completed", detail: "Local load test across 100 simulated workers" },
+  { value: "0", label: "Scheduler job failures", detail: "Recorded 10,000-job run" },
+  { value: "2.42 ms", label: "ScoutSearch broad-query p50", detail: "Down from 13.91 ms on the pinned corpus" },
+  { value: "27/27", label: "ScoutSearch reference matches", detail: "Match counts, top-10 rankings, and scores" },
+  { value: "1,654", label: "Documentation passages", detail: "ScoutSearch benchmark corpus" },
+  { value: String(openSource.length), label: "Featured merged PRs", detail: "Kiota Java, OpenTelemetry Java, and fmt" }
 ];
 
 export const achievements = [

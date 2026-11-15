@@ -7,10 +7,18 @@ import { AnimatedSection } from "@/components/animated-section";
 import { ArchitectureFlow } from "@/components/architecture-flow";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { projects } from "@/lib/site";
+import { projects, type Project } from "@/lib/site";
 
 type ProjectPageProps = {
   params: Promise<{ slug: string }>;
+};
+
+const architectureNodes: Record<string, string[]> = {
+  "distributed-job-scheduler": ["Client", "Spring Boot API", "PostgreSQL", "Kafka", "Worker Pool", "Redis Locks"],
+  "candidate-ranking": ["JSONL Input", "Feature Extraction", "Deterministic Scoring", "Bounded Top-K", "Validated CSV"],
+  "multi-agent-routing": ["Gateway", "Orchestrator", "Shared Contracts", "Specialist Modules", "Validator"],
+  "cloud-drive": ["Client", "Spring Boot API", "PostgreSQL Metadata · S3 Objects", "Redis Cache · Elasticsearch Index"],
+  scoutsearch: ["Documentation", "Python Indexer", "SQLite Positional Postings", "BM25 Scoring", "React Search Results"]
 };
 
 export function generateStaticParams() {
@@ -39,15 +47,8 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
     notFound();
   }
 
-  const nodes =
-    project.slug === "distributed-job-scheduler"
-      ? ["Client", "Spring Boot API", "PostgreSQL", "Kafka", "Worker Pool", "Redis Locks"]
-      : project.slug === "candidate-ranking"
-        ? ["JSONL Input", "Feature Extraction", "Deterministic Scoring", "Bounded Top-K", "Validated CSV"]
-      : project.slug === "multi-agent-routing"
-        ? ["Gateway", "Orchestrator", "Shared Contracts", "Specialist Modules", "Validator"]
-        : ["Input", "Processing", "Validation", "Output"];
-  const sections = getCaseStudySections(project.slug);
+  const nodes = architectureNodes[project.slug] ?? ["Input", "Processing", "Validation", "Output"];
+  const sections = getCaseStudySections(project);
 
   return (
     <>
@@ -80,6 +81,17 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
               ))}
             </div>
           </div>
+          {project.benchmark ? (
+            <div className="mt-6 rounded-lg border border-border bg-card p-5">
+              <h2 className="text-lg font-semibold tracking-normal">Benchmark methodology</h2>
+              <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">{project.benchmark.methodology}</p>
+              <Button asChild className="mt-4" variant="outline">
+                <a href={project.benchmark.href} target="_blank" rel="noreferrer">
+                  View benchmark report <ArrowUpRight />
+                </a>
+              </Button>
+            </div>
+          ) : null}
         </div>
       </section>
 
@@ -144,7 +156,8 @@ function CaseStudyBlock({ title, items }: { title: string; items: string[] }) {
   );
 }
 
-function getCaseStudySections(slug: string) {
+function getCaseStudySections(project: Project) {
+  const { slug } = project;
   if (slug === "distributed-job-scheduler") {
     return [
       {
@@ -320,5 +333,10 @@ function getCaseStudySections(slug: string) {
     ];
   }
 
-  return [];
+  return [
+    { title: "Architecture", items: project.architecture },
+    { title: "Design Decisions", items: project.decisions },
+    { title: "Performance", items: project.scaling },
+    { title: "Validation", items: project.reliability }
+  ];
 }

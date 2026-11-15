@@ -16,14 +16,12 @@ export function getSearchItems(): SearchItem[] {
     description: `Open ${item.label}`
   }));
 
-  const projectItems = projects
-    .filter((project) => ["distributed-job-scheduler", "multi-agent-routing"].includes(project.slug))
-    .map((project) => ({
-      title: project.title,
-      href: `/projects/${project.slug}`,
-      group: "Projects",
-      description: project.subtitle
-    }));
+  const projectItems = projects.map((project) => ({
+    title: project.title,
+    href: `/projects/${project.slug}`,
+    group: "Projects",
+    description: project.subtitle
+  }));
 
   const experienceItems = experiences.map((experience) => ({
     title: experience.company,
