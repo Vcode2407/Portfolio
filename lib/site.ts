@@ -194,6 +194,53 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "dagbuild",
+    title: "Dagbuild",
+    subtitle: "A Go incremental build engine with parallel execution and verified artifact caching.",
+    repo: "https://github.com/Vcode2407/dagbuild",
+    featured: true,
+    featuredMetric: "3 of 145 actions rebuilt",
+    benchmark: {
+      href: "https://github.com/Vcode2407/dagbuild/blob/main/docs/benchmark.md",
+      methodology:
+        "A local benchmark ran five trials with four workers on a synthetic 145-action build graph. It compressed 128 JSONL files, assembled them into 16 groups, and joined those groups into one bundle. Wall time includes process startup, cache verification, and writing the artifact."
+    },
+    tags: ["Go", "DAG Scheduling", "Concurrency", "SHA-256", "Benchmarking"],
+    category: "Developer Tools",
+    overview:
+      "Built a command-line build engine that runs independent actions in parallel and reports which actions executed, reused a result, or repaired a cache entry.",
+    problem:
+      "A single input edit should rebuild only the actions whose inputs changed. A cached artifact also needs an integrity check before a later action can use it.",
+    architecture: [
+      "Validates the requested dependency graph and reports the path of any cycle.",
+      "Dispatches ready actions up to the worker limit, then uses their output digests as inputs to dependent actions.",
+      "Stores action records separately from content-addressed artifacts and verifies both before reuse."
+    ],
+    decisions: [
+      "Keys each action on its operation, implementation and toolchain versions, and ordered input digests.",
+      "Publishes the artifact before the action record that points to it, so a record only appears after the artifact has been written.",
+      "Uses dependency output digests to keep downstream cache entries reusable when a rerun produces the same bytes."
+    ],
+    scaling: [
+      "Appending one record rebuilt the changed shard, its group, and the final bundle. The other 142 actions reused cached results.",
+      "Median wall time was 536.46 ms with an empty cache, 92.17 ms after one edit, and 57.98 ms with a warm cache and unchanged inputs."
+    ],
+    reliability: [
+      "The corruption drill overwrote one cached leaf artifact. Dagbuild detected the SHA-256 mismatch, reported corrupt-output, and rebuilt just that action.",
+      "The rebuilt leaf recovered its original digest, so the other 144 actions were cache hits. Both the edited and recovered bundles matched an independent clean build byte for byte."
+    ],
+    lessons: [
+      "Measure how much work a build skips as well as its wall time. Cache verification still reads and hashes artifacts.",
+      "Compare the final artifact against a clean build to check that incremental reuse preserves correctness."
+    ],
+    metrics: [
+      { label: "Actions rebuilt after one edit", value: "3 / 145" },
+      { label: "Median after one edit", value: "92.17 ms" },
+      { label: "Median with an empty cache", value: "536.46 ms" },
+      { label: "Actions rebuilt after corruption", value: "1 / 145" }
+    ]
+  },
+  {
     slug: "batchserve-onnx",
     title: "BatchServe ONNX",
     subtitle: "CPU model serving with dynamic batching, request deadlines, and a bounded queue.",
