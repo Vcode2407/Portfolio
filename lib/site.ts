@@ -194,6 +194,52 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "release-flags",
+    title: "Release Flags",
+    subtitle: "A Java feature flag service with gradual rollouts, audited rollback, and local evaluation.",
+    repo: "https://github.com/Vcode2407/release-flags",
+    featured: true,
+    featuredMetric: "0 B body on unchanged polls",
+    benchmark: {
+      href: "https://github.com/Vcode2407/release-flags/blob/main/docs/benchmark.md",
+      methodology:
+        "A local Docker Compose run polled the same 21-flag snapshot over one persistent HTTP connection. Each path used 5 warm-ups and 40 timed requests. Latency includes authentication and database access. Body counts exclude HTTP headers."
+    },
+    tags: ["Java 21", "Spring Boot", "PostgreSQL", "HTTP ETags", "Flyway", "Docker"],
+    category: "Backend Systems",
+    overview:
+      "Built a feature flag service that coordinates versioned writes in PostgreSQL and provides a Java client for evaluating cached rules.",
+    problem:
+      "If a publisher loses the HTTP response after a rollout or rollback commits, the client needs to recover the write result without creating another revision.",
+    architecture: [
+      "The Spring Boot API accepts version-checked publishes and rollbacks. PostgreSQL stores the audit history and the current revision for each flag.",
+      "The Java client polls environment snapshots with an ETag and evaluates deterministic rollout rules in memory."
+    ],
+    decisions: [
+      "Persisted each retry key on the audit revision in the same transaction as the flag update.",
+      "Checked for a saved result before checking the current flag revision so the retry still works after a newer write.",
+      "Serialized writes within an environment and used repeatable-read snapshots to keep the rules and their ETag consistent."
+    ],
+    scaling: [
+      "An unchanged poll returned HTTP 304 with a 0-byte response body. A full HTTP 200 snapshot returned 2,402 bytes.",
+      "Median end-to-end latency was 67.48 ms for conditional polls and 69.50 ms for full reads in the local run."
+    ],
+    reliability: [
+      "After a rollback committed, killed and restarted the Docker API, then retried with the original key. The API returned the same response, and audit history and the snapshot revision confirmed a single write.",
+      "Passed 18 automated tests, including concurrent retries, conflicting key reuse, and replay after a newer revision."
+    ],
+    lessons: [
+      "A lost HTTP response can leave a committed operation behind. Storing the retry key alongside the result lets the API recover it after process loss.",
+      "Conditional polling saves response bytes while both paths still pay for authentication and a database revision check."
+    ],
+    metrics: [
+      { label: "Full snapshot body", value: "2,402 B" },
+      { label: "Unchanged poll body", value: "0 B" },
+      { label: "Full snapshot p95", value: "73.83 ms" },
+      { label: "Unchanged poll p95", value: "72.38 ms" }
+    ]
+  },
+  {
     slug: "distributed-job-scheduler",
     title: "Distributed Job Scheduler",
     subtitle: "A fault-tolerant scheduler for immediate, delayed, and cron-based execution.",

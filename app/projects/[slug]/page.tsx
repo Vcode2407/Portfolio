@@ -14,6 +14,7 @@ type ProjectPageProps = {
 };
 
 const architectureNodes: Record<string, string[]> = {
+  "release-flags": ["Publisher", "Spring Boot API", "PostgreSQL Audit Revision", "Versioned Write Result"],
   "distributed-job-scheduler": ["Client", "Spring Boot API", "PostgreSQL", "Kafka", "Worker Pool", "Redis Locks"],
   "candidate-ranking": ["JSONL Input", "Feature Extraction", "Deterministic Scoring", "Bounded Top-K", "Validated CSV"],
   "multi-agent-routing": ["Gateway", "Orchestrator", "Shared Contracts", "Specialist Modules", "Validator"],

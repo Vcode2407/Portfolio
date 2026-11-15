@@ -96,9 +96,9 @@ export default function HomePage() {
         <div className="container">
           <SectionHeading
             eyebrow="Projects"
-            title="Pinned on GitHub"
+            title="Selected projects"
           />
-          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
             {featuredProjects.map((project) => (
               <article key={project.slug} className="rounded-lg border border-border bg-card p-5 shadow-panel">
                 <div className="flex flex-wrap items-start justify-between gap-4">
